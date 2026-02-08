@@ -1,0 +1,54 @@
+{
+  "app": {
+    "title": "My App",
+    "login": "Login"
+  },
+  "menus": {
+    "about": "About",
+    "general": "General",
+    "shortcut": "Shortcut key",
+    "history": "History",
+    "wetips": "Wetips",
+    "writeprompts": "Write Tip"
+  },
+  "components": {
+    "general": {
+      "title": {
+        "application": "Apply settings",
+        "exterior": "Appearance settings",
+        "power": "Permission settings",
+        "update": "Application update",
+        "tips": "Prompt settings",
+        "notify": "Sound settings"
+      },
+      "label": {
+        "assistant_access": "Accessibility permissions",
+        "automatic_up": "Automatically check for updates",
+        "disk_access": "Full disk access",
+        "language": "Interface language",
+        "next_up": "Automatically check for updates next time",
+        "startup": "Started when logged in",
+        "theme": "Theme mode",
+        "prompt_time": "Default prompt duration",
+        "completion_time": "Default completion time",
+        "notify_copy": "Prompt sound effect"
+      },
+      "subLabel": {
+        "sb_assistant_access": "Accessibility permission is required to operate clipboard contents",
+        "sb_disk_access": "Full disk access is required to implement file preview",
+        "sb_prompt_time": "Default reminder duration setting (only suitable for scheduled reminders that do not recognize the time), unit is minutes",
+        "sb_completion_time": "Default completion time setting (only suitable for scheduled prompts), unit is minutes"
+      },
+      "buttons": {
+        "authorized": "Auth",
+        "go_authorized": "Auth now"
+      }
+    },
+    "themesetting": {
+      "select": {
+        "opt_dark": "Dark",
+        "opt_light": "Bright"
+      }
+    }
+  }
+}
