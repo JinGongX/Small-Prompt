@@ -53,9 +53,9 @@ _基于 Wails v3 构建，使用 Go + Vue 3 + TypeScript，当前优先支持 ma
 ## 🚀 快速开始（Getting Started）
 
 环境要求
-	•	Go
-	•	Node.js
-	•	Wails v3
+- Go
+- Node.js
+- Wails v3
 
 本地运行
 ```bash
@@ -143,9 +143,9 @@ _Built with Wails v3 using Go, Vue 3, and TypeScript, with macOS as the primary 
 ## 🚀 Getting Started
 
 Requirements
-	•	Go
-	•	Node.js
-	•	Wails v3
+- Go
+- Node.js
+- Wails v3
 
 Run locally
 ```bash
