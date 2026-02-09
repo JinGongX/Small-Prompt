@@ -92,7 +92,7 @@ wails3 dev
 
 ## 📜 许可证
 
-Apache-2.0 License
+MIT License 
 
 ## 🌱 项目状态
 
@@ -181,7 +181,7 @@ wails3 dev
 
 ## 📜 License
 
-Apache-2.0 License
+MIT License
 
 ## 🌱 Project Status
 
