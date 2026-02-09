@@ -38,12 +38,17 @@ Small Prompt 是一款轻量级桌面应用，用于创建「小提示（Small P
 基于 Wails v3 构建，使用 Go + Vue 3 + TypeScript，当前优先支持 macOS。
 
 ## 🖼️ 截图
-![输入图片说明](effect/zh/dark_0.jpg)
-![输入图片说明](effect/zh/dark_1.jpg)
-![输入图片说明](effect/zh/bright_0.jpg)
-![输入图片说明](effect/zh/bright_1.jpg)
-![输入图片说明](effect/zh/bright_2.jpg)
-![输入图片说明](effect/zh/bright_3.jpg)
+
+<p align="center">
+  <img src="effect/zh/dark_0.jpg" width="320" />
+  <img src="effect/zh/dark_1.jpg" width="320" />
+</p>
+<p align="center">
+  <img src="effect/zh/bright_0.jpg" width="240" />
+  <img src="effect/zh/bright_1.jpg" width="240" />
+  <img src="effect/zh/bright_2.jpg" width="240" />
+  <img src="effect/zh/bright_3.jpg" width="240" />
+</p>
 
 ## 🚀 快速开始（Getting Started）
 
@@ -128,8 +133,11 @@ Built with Wails v3 using Go, Vue 3, and TypeScript, with macOS as the primary p
 
 ## 🖼️ Screenshots
 
-![输入图片说明](effect/en/dark_0.jpg)
-![输入图片说明](effect/en/bright_0.jpg)
+<p align="center">
+  <img src="effect/en/dark_0.jpg" width="320" />
+  <img src="effect/en/bright_0.jpg" width="320" />
+</p>
+
 
 ## 🚀 Getting Started
 
