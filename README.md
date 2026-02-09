@@ -24,17 +24,17 @@ Small Prompt 是一款轻量级桌面应用，用于创建「小提示（Small P
 它专注于 不打扰、低负担、刚刚好 的提示体验，而不是复杂的任务管理。
 
 ## ✨ 功能特性（Features）
-	•	🪶 轻提示设计（Small Prompts）
+🪶 轻提示设计（Small Prompts）
 非侵入式提示卡片，在合适的时间轻轻提醒你重要的小事。
-	•	⏰ 灵活的时间调度
+⏰ 灵活的时间调度
 支持即时提示、定时提醒、延时（Snooze）等常见使用场景。
-	•	✅ 状态管理
+✅ 状态管理
 支持完成、过期等状态，保持提示列表清晰可控。
-	•	🎨 简洁现代的界面
+🎨 简洁现代的界面
 干净、轻量的 UI 设计，支持浅色 / 深色模式。
-	•	🗂️ 本地优先（Local-first）存储
+🗂️ 本地优先（Local-first）存储
 使用 SQLite 进行本地数据持久化，数据完全存储在用户设备中。
-	•	🖥️ 跨平台桌面应用
+🖥️ 跨平台桌面应用
 基于 Wails v3 构建，使用 Go + Vue 3 + TypeScript，当前优先支持 macOS。
 
 ## 🖼️ 截图
@@ -44,10 +44,10 @@ Small Prompt 是一款轻量级桌面应用，用于创建「小提示（Small P
   <img src="effect/zh/dark_1.jpg" width="320" />
 </p>
 <p align="center">
-  <img src="effect/zh/bright_0.jpg" width="240" />
-  <img src="effect/zh/bright_1.jpg" width="240" />
-  <img src="effect/zh/bright_2.jpg" width="240" />
-  <img src="effect/zh/bright_3.jpg" width="240" />
+  <img src="effect/zh/bright_0.jpg" width="200" />
+  <img src="effect/zh/bright_1.jpg" width="200" />
+  <img src="effect/zh/bright_2.jpg" width="200" />
+  <img src="effect/zh/bright_3.jpg" width="200" />
 </p>
 
 ## 🚀 快速开始（Getting Started）
@@ -118,17 +118,17 @@ Small Prompt is a lightweight desktop application designed for creating small pr
 It focuses on a non-intrusive, low-friction, just-enough reminder experience rather than heavy task management.
 
 ## ✨ Features
-	•	🪶 Small Prompt Design
+- 🪶 Small Prompt Design
 Non-intrusive prompt cards that gently remind you of important things at the right time.
-	•	⏰ Flexible Scheduling
+- ⏰ Flexible Scheduling
 Supports instant prompts, scheduled reminders, and snooze-based delays.
-	•	✅ State Management
+- ✅ State Management
 Manage prompts with completed and expired states to keep your list clear and organized.
-	•	🎨 Clean & Modern UI
+- 🎨 Clean & Modern UI
 A lightweight interface with support for light and dark modes.
-	•	🗂️ Local-first Storage
+- 🗂️ Local-first Storage
 Uses SQLite for local persistence. All data stays on your device.
-	•	🖥️ Cross-platform Desktop App
+- 🖥️ Cross-platform Desktop App
 Built with Wails v3 using Go, Vue 3, and TypeScript, with macOS as the primary platform.
 
 ## 🖼️ Screenshots
