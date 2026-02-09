@@ -7,10 +7,10 @@
   <em>小而刚好的提示，轻而不打扰的提醒。</em>
 </p>
 <p align="center">
-<a href="https://github.com/JinGongX/SuiDemo?tab=Apache-2.0-1-ov-file">
-<img alt="GitHub" src="https://img.shields.io/badge/license-Apache_2.0-blue"/>
+<a href="https://github.com/JinGongX/Small-Prompt?tab=MIT-1-ov-file">
+<img alt="GitHub" src="https://img.shields.io/badge/license-MIT-blue"/>
 </a>
-<a href="https://github.com/JinGongX/SuiDemo/releases">
+<a href="https://github.com/JinGongX/Small-Prompt/releases">
 <img alt="GitHub tag" src="https://img.shields.io/badge/version-v0.1.0--alpha-orange">
 </a>
  <a href="https://github.com/wailsapp/wails/tags" rel="nofollow">
