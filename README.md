@@ -59,7 +59,7 @@ _基于 Wails v3 构建，使用 Go + Vue 3 + TypeScript，当前优先支持 ma
 
 本地运行
 ```bash
-git clone https://github.com/yourname/small-prompt.git
+git clone https://github.com/JinGongX/Small-Prompt
 cd small-prompt
 wails3 dev
 ```
@@ -149,7 +149,7 @@ Requirements
 
 Run locally
 ```bash
-git clone https://github.com/yourname/small-prompt.git
+git clone https://github.com/JinGongX/Small-Prompt
 cd small-prompt
 wails3 dev
 ```
