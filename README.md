@@ -1,4 +1,4 @@
-<p align="center"><h1 align="center"><img src="effect/appicon.png" width="42" />Small Prompt</h1></p>
+<p align="center"><h1 align="center"><img src="effect/appicon0.png" width="42" />Small Prompt</h1></p>
 <p align="center">
   <em>Small prompts, gently reminding you at just the right moment.</em><br/>
   <em>小而刚好的提示，轻而不打扰的提醒。</em>
