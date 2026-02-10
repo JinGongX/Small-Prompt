@@ -1,7 +1,7 @@
 package services
 
 import (
-	platform "changeme/platform/mac"
+	"changeme/platform"
 	"fmt"
 	"sync"
 

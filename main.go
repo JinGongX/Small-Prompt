@@ -1,7 +1,7 @@
 package main
 
 import (
-	platform "changeme/platform/mac"
+	"changeme/platform"
 	"changeme/services"
 	"embed"
 	_ "embed"
