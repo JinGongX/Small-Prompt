@@ -72,12 +72,8 @@ func NewSuiStore() (*SuiStore, error) {
 	}
 
 	if count == 0 {
-		_, err = db.Exec(`
-			INSERT INTO hotkeys (keycode, modifiers, description, target)
-			VALUES 
-				(34, 768, 'testdemo', '1'),
-				(46, 768, 'testdemo2', '2');
-		`)
+		var sqlhotkeys = OSinithotkeys()
+		_, err = db.Exec(sqlhotkeys)
 		if err != nil {
 			return nil, err
 		}

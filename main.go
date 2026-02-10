@@ -38,9 +38,15 @@ func (a *AppService) SetApp(app *application.App) {
 func (a *AppService) OpenSecondWindow() {
 	if a.secondWindow != nil {
 		fmt.Println("[DEBUG] secondWindow is not nil")
-		screen, _ := a.secondWindow.GetScreen()                            // 获取屏幕信息
-		a.secondWindow.SetPosition((screen.X+screen.Size.Width-340)*2, 10) //+10
-		a.secondWindow.Show()                                              //.Hide()
+		screen, _ := a.secondWindow.GetScreen() // 获取屏幕信息
+		x := screen.X + screen.Size.Width - 340
+		if runtime.GOOS == "darwin" {
+			x = int(float64(x) * float64(screen.ScaleFactor)) // macOS 需要考虑屏幕缩放
+		}
+		a.secondWindow.SetPosition(x, 10) //+10
+		platform.ActivateApp()            //  windows系统下需要调用 ActivateApp 来激活应用，否则无法聚焦
+		a.secondWindow.Show()             //.Hide()
+		a.secondWindow.Focus()            // 聚焦窗口
 	} else {
 		fmt.Println("[ERROR] secondWindow is nil")
 	}
@@ -49,7 +55,9 @@ func (a *AppService) OpenSecondWindow() {
 func (a *AppService) OpenTipsWindow() {
 	if a.tipsWindow != nil {
 		fmt.Println("[DEBUG] tipsWindow is not nil")
-		a.tipsWindow.Show() //.Hide()
+		platform.ActivateApp() //  windows系统下需要调用 ActivateApp 来激活应用，否则无法聚焦
+		a.tipsWindow.Show()    //.Hide()
+		a.tipsWindow.Focus()   // 聚焦窗口 windows系统下需要调用 ActivateApp 来激活应用，否则无法聚焦
 		//a.tipsWindow.Restore() // 解除最小化状态（尤其是 Windows）
 	} else {
 		fmt.Println("[ERROR] tipsWindow is nil")
@@ -77,11 +85,12 @@ func main() {
 	// 'Bind' is a list of Go struct instances. The frontend has access to the methods of these instances.
 	// 'Mac' options tailor the application when running an macOS.
 	app := application.New(application.Options{
-		Name:        "wetips",
+		Name:        "Small Prompt",
 		Description: "A demo of using raw HTML & CSS",
 		Services: []application.Service{
 			application.NewService(appservice),
 			application.NewService(suiService),
+			application.NewService(services.NewSystemInfo()),
 		},
 		Assets: application.AssetOptions{
 			Handler: application.AssetFileServerFS(assets),
@@ -123,6 +132,7 @@ func main() {
 			TitleBar: application.MacTitleBarHidden,
 			Backdrop: application.MacBackdropTransparent, // 可选：背景透明
 		},
+		BackgroundType: application.BackgroundTypeTransparent, //windows系统下需要设置背景类型为透明
 		//BackgroundColour: application.NewRGB(27, 38, 54),
 		URL:    "/#/second",
 		Hidden: true, // ✅ 初始状态为隐藏
@@ -176,6 +186,12 @@ func main() {
 		}
 		// screen, _ := secondWindow.GetScreen()                            // 获取屏幕信息
 		// secondWindow.SetPosition((screen.X+screen.Size.Width-340)*2, 10) //+10
+		screen, _ := secondWindow.GetScreen() // 获取屏幕信息
+		x := screen.X + screen.Size.Width - 340
+		if runtime.GOOS == "darwin" {
+			x = int(float64(x) * float64(screen.ScaleFactor)) // macOS 需要考虑屏幕缩放
+		}
+		secondWindow.SetPosition(x, 10) //+10
 		platform.ActivateApp()
 		secondWindow.Show()
 		secondWindow.Focus() // 聚焦窗口

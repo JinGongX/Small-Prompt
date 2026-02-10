@@ -176,7 +176,7 @@ const onCardDelayed = (card: PromptCard) => {
 
 <template>
   <!-- Prompt Stack -->
-<div class="">
+<div class="drag-region">
      <div v-if="isReady &&cards.length > 0" class="fixed h-full top-2 right-4 pr-0.5 space-y-1 font-sans select-none   h-[86vh] overflow-y-auto  overflow-x-hidden scrollbar-thin pb-2"  > 
       <TransitionGroup name="card"> 
       <div
