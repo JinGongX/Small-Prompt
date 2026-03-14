@@ -215,7 +215,7 @@ function getPrompt(isFirstTime: boolean) {
 <template>
   <!-- Prompt Stack -->
 <div class="drag-region fixed top-2 right-4 w-[300px] flex flex-col h-screen">
-    <TopNavBar class="z-50 mb-1" :pendingCount="pendingCount" altertitle="提示面板"  />
+    <TopNavBar class="z-50 mb-1" :pendingCount="pendingCount" altertitle="提示面板"  @filter-change="handleFilterChange"/>
      <div v-if="isReady &&(cards.length > 0 || cardscheduleds.length>0)" class="fixed-1 h-full  right-4 pr-0.5 space-y-1 font-sans select-none   h-[86vh] overflow-y-auto  overflow-x-hidden scrollbar-thin  pb-4 "  > 
       <TransitionGroup name="card" class=""> 
       <div v-if="viewfilter==='all' || viewfilter==='scheduled'"
