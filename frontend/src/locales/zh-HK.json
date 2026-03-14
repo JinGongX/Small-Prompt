@@ -1,0 +1,113 @@
+{
+  "app": {
+    "login": "登入",
+    "menu": {
+      "about": "關於",
+      "preferences": "偏好設定",
+      "quit": "退出應用",
+      "version": "版本:v0.1",
+      "wetips": "輕提示欄",
+      "writeprompts": "去寫提示"
+    },
+    "title": "我的應用"
+  },
+  "components": {
+    "general": {
+      "buttons": {
+        "authorized": "已授權",
+        "go_authorized": "去授權"
+      },
+      "label": {
+        "assistant_access": "輔助使用存取權限",
+        "automatic_up": "自動檢查更新",
+        "completion_time": "預設完成時間",
+        "disk_access": "完全磁碟存取權限",
+        "language": "介面語言",
+        "next_up": "下次啟動自動檢查更新",
+        "notify_copy": "提示音效",
+        "ocrimg": "圖片OCR",
+        "prompt_time": "預設提示時長",
+        "startup": "登入時啟動",
+        "theme": "主題模式"
+      },
+      "subLabel": {
+        "sb_assistant_access": "需要無障礙存取權限來操作剪切板內容",
+        "sb_completion_time": "預設完成時間設定(僅適合定時提示)，單位為分鐘",
+        "sb_disk_access": "需要完全磁碟存取權限來實現檔案預覽",
+        "sb_prompt_time": "預設提醒時長設定(僅適合定時提示未辨識到時間)，單位為分鐘"
+      },
+      "title": {
+        "application": "應用程式設定",
+        "exterior": "外觀設定",
+        "function": "功能設定",
+        "notify": "音效設定",
+        "power": "權限設定",
+        "tips": "提示設定",
+        "update": "應用程式更新"
+      }
+    },
+    "history": {
+      "buttons": {
+        "clear": "清除"
+      },
+      "label": {
+        "maxduration": "保留時長",
+        "maxrecords": "最大條數"
+      },
+      "title": {
+        "clear": "清除歷史記錄",
+        "history": "歷史記錄"
+      }
+    },
+    "remote": {
+      "label": {
+        "automatic_up": "自動檢查更新",
+        "disk_access": "完全磁碟存取權限",
+        "language": "介面語言",
+        "next_up": "下次啟動自動檢查更新",
+        "openremote": "允許遠端共享",
+        "startup": "登入時啟動",
+        "theme": "主題模式"
+      },
+      "title": {
+        "remoteserver": "遠端設定",
+        "sharserver": "共享設定"
+      }
+    },
+    "themesetting": {
+      "select": {
+        "opt_dark": "暗色模式",
+        "opt_light": "亮色模式"
+      }
+    },
+    "tipduration": {
+      "select": {
+        "5": "5",
+        "10": "10",
+        "15": "15",
+        "20": "20",
+        "30": "30",
+        "60": "60"
+      }
+    }
+  },
+  "menus": {
+    "about": "關於",
+    "backup": "資料備份",
+    "general": "通用設定",
+    "history": "歷史記錄",
+    "remote": "遠端分享",
+    "shortcut": "快速鍵",
+    "wetips": "輕提示欄",
+    "writeprompts": "寫提示"
+  },
+  "pages": {
+    "home": {
+      "TopNavBar": {
+        "all": "全部提示",
+        "pending": "待提示",
+        "saved": "已儲存"
+      }
+    }
+  }
+}

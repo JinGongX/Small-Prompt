@@ -23,6 +23,7 @@ export function getOS(): string | null {
 }
 
 export function IsmacOS(): boolean {
+  console.log("检测操作系统:", cachedOS)
   return cachedOS==='darwin';
 }
 

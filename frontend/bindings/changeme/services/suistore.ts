@@ -19,10 +19,28 @@ export function FindNextScheduled(now: number): $CancellablePromise<$models.TipI
     });
 }
 
+/**
+ * 根据key获取配置项
+ */
+export function GetAppConfig(key: string): $CancellablePromise<string> {
+    return $Call.ByID(464759337, key);
+}
+
+/**
+ * 查找定时提示的待提示数量
+ */
+export function GetFindScheduledCount(): $CancellablePromise<number> {
+    return $Call.ByID(1803886345);
+}
+
 export function GetHotkeys(): $CancellablePromise<$models.Hotkey[]> {
     return $Call.ByID(23462219).then(($result: any) => {
         return $$createType3($result);
     });
+}
+
+export function GetLanguage(): $CancellablePromise<string> {
+    return $Call.ByID(4179034138);
 }
 
 export function GetLatestTip(): $CancellablePromise<$models.TipInfo | null> {
@@ -39,6 +57,13 @@ export function GetTips(): $CancellablePromise<$models.TipInfo[]> {
 
 export function InsTips(contentType: string, category: string, content: string, expireAt: number, snoozeAt: number): $CancellablePromise<void> {
     return $Call.ByID(1660750994, contentType, category, content, expireAt, snoozeAt);
+}
+
+/**
+ * 设置或更新配置项
+ */
+export function SetAppConfig(key: string, value: string): $CancellablePromise<void> {
+    return $Call.ByID(2370703949, key, value);
 }
 
 export function Start(): $CancellablePromise<void> {

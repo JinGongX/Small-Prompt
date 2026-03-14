@@ -1,7 +1,15 @@
 {
   "app": {
     "title": "我的应用",
-    "login": "登录"
+    "login": "登录",
+    "menu": {
+      "about": "关于",
+      "quit": "退出应用",
+      "preferences": "偏好设置",
+      "writeprompts": "去写提示",
+      "wetips": "轻提示栏",
+      "version": "版本:v0.1"
+    }
   },
   "menus": {
     "general": "通用设置",
@@ -10,7 +18,7 @@
     "history": "历史记录",
     "backup": "数据备份",
     "about": "关于",
-    "wetips": "轻提示",
+    "wetips": "轻提示栏",
     "writeprompts": "写提示"
   },
   "components": {
@@ -91,6 +99,15 @@
         "20": 20,
         "30": 30,
         "60": 60
+      }
+    }
+  },
+  "pages": {
+    "home": {
+      "TopNavBar": {
+        "pending": "待提示",
+        "saved": "已保存",
+        "all": "全部提示"
       }
     }
   }

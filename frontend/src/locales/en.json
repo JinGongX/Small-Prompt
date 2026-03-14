@@ -1,7 +1,15 @@
 {
   "app": {
     "title": "My App",
-    "login": "Login"
+    "login": "Login",
+    "menu": {
+      "about": "About",
+      "quit": "Quit",
+      "preferences": "Settings",
+      "writeprompts": "Open New Column",
+      "wetips": "Open Prompts Bar",
+      "version": "Version:v0.1"
+    }
   },
   "menus": {
     "about": "About",
@@ -48,6 +56,15 @@
       "select": {
         "opt_dark": "Dark",
         "opt_light": "Bright"
+      }
+    }
+  },
+  "pages": {
+    "home": {
+      "TopNavBar": {
+        "pending": "PENDING",
+        "saved": "SAVED",
+        "all": "ALL"
       }
     }
   }

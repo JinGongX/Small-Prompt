@@ -39,6 +39,7 @@ func EmitTipsEvent(contentType string) {
 		})
 	} else { //定时类型，重新计算调度
 		scheduler.Recalculate()
+		appInstance.Event.Emit("tipScheduledCountEvent", scheduler.repo.GetFindScheduledCount()) //触发更新 pendingCount
 	}
 }
 
@@ -62,6 +63,7 @@ func (s *PromptScheduler) trigger(tip *TipInfo) {
 	// 2️⃣ 更新状态
 	_ = s.repo.UpTipsState(tip.ID, 2) // 设置为已展示
 	fmt.Println("✅ 提示状态已更新为已展示")
+	appInstance.Event.Emit("tipScheduledCountEvent", scheduler.repo.GetFindScheduledCount()) //触发更新 pendingCount
 	// 3️⃣ 继续调度下一条
 	s.Recalculate()
 }

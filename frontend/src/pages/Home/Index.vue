@@ -2,12 +2,19 @@
 <script setup lang="ts">
 import { computed,ref,onMounted,onUnmounted,watch } from 'vue'
 import PromptCard from '../../components/Setting/PromptCard.vue';
-import{GetTips,UpTipsState,UpTipsPinned,UpTipsDelayed } from  '../../../bindings/changeme/services/suistore'
+import TopNavBar from '../../components/Setting/TopNavBar.vue';
+import{GetTips,UpTipsState,UpTipsPinned,UpTipsDelayed,GetFindScheduledCount } from  '../../../bindings/changeme/services/suistore'
 import {Events} from "@wailsio/runtime";
 import { applyTheme } from '../../utils/ThemeManager'
 import Icon,{ CheckCircleTwoTone, PushpinOutlined , HistoryOutlined } from '@ant-design/icons-vue';
 import { useNowTick } from '../../utils/useNowTick'
+import { OpenTipsWindow } from  '../../../bindings/changeme/services/appservice'
+import { fontMap, FontMode } from '../../utils/fonts'
+import { i18n, setupI18n } from '../../utils/i18n'
+import {themeChannel,langChannel,settingChannel} from '../../utils/langChannel'
 
+const currentFont = ref('emotion')
+const pendingCount = ref(0) //
 const MAX_SNOOZE = 3 // 最大延迟次数
 // ---------- 类型定义 ----------
 type PromptType = 'life' | 'work' | 'device' | 'security' | 'system' |'default'
@@ -46,10 +53,10 @@ function formatTime(ts: number) {
 function getVisual(type: string) {
   const map: Record<string, { bg: string; image: string }> = {
     life: { bg: 'bg-amber-50', image: '/eat.png' },
-    work: { bg: 'bg-blue-50', image: '/image2.png' },
+    work: { bg: 'bg-blue-50', image: '/work.png' },
     device: { bg: 'bg-teal-50', image: '/image2.png' },
     security: { bg: 'bg-emerald-50', image: '/image3.png' },
-    system: { bg: 'bg-neutral-100', image: '/image3.png' },
+    system: { bg: 'bg-neutral-100', image: '/system.png' },
     rest: { bg: 'bg-purple-50', image: '/coffee.png' },
     default: { bg: 'bg-neutral-100', image: '/default.png' },
   }
@@ -88,6 +95,7 @@ const onTipEvent = (item) => {
   addCard(raw)  
 }
 onMounted(async() => {
+  pendingCount.value = await GetFindScheduledCount();
   await fetchTips();
   isReady.value = true
   const savedCompletion = localStorage.getItem('completion')
@@ -95,6 +103,9 @@ onMounted(async() => {
     AUTO_COMPLETE_DURATION.value = parseInt(savedCompletion, 10)*60
   } 
   Events.On('tipEvent', onTipEvent);
+  Events.On('tipScheduledCountEvent', (count) => {
+    pendingCount.value = count.data[0]
+  })
 });
 onUnmounted(() => {
   Events.Off('tipEvent'); 
@@ -162,24 +173,52 @@ const onCardDelayed = (card: PromptCard) => {
 //   } 
 // }
 
-  const bc = new BroadcastChannel('theme')
-  bc.onmessage = (e) => {
+const tips = [
+  "小步骤也能带来大变化。",
+  "创意来自行动。",
+  "每一个开始都值得记录。",
+  "别忘了你是创作者！"
+];
+
+function getPrompt(isFirstTime: boolean) {
+  if (isFirstTime) {
+    return  `📝 还没有任何提示\n点击下方按钮创建你的第一个提示`;
+  }
+  return tips[Math.floor(Math.random() * tips.length)];
+}
+
+
+  // const bc = new BroadcastChannel('theme')
+  themeChannel.onmessage = (e) => {
     applyTheme(e.data)
   }
-  const setting = new BroadcastChannel('settings')
-  setting.onmessage = (e) => {
+  // const langChannel = new BroadcastChannel('language')
+  langChannel.onmessage =  async (e) => {
+   await setupI18n(e.data)
+  }
+  
+  // const setting = new BroadcastChannel('settings')
+  settingChannel.onmessage = (e) => {
     if(e.data.type==='duration'){ 
       AUTO_COMPLETE_DURATION.value=e.data.value*60
     }
+  }
+  const viewfilter = ref('all')
+  const handleFilterChange = (filterType: 'all' | 'scheduled' | 'immediate') => {
+    console.log('过滤类型改变:', filterType)
+    viewfilter.value = filterType
+    // 这里可以根据 filterType 来调整显示的卡片
+    // 例如，设置一个 computed 来根据 filterType 过滤 cards 和 cardscheduleds
   }
 </script>
 
 <template>
   <!-- Prompt Stack -->
-<div class="drag-region">
-     <div v-if="isReady &&cards.length > 0" class="fixed h-full top-2 right-4 pr-0.5 space-y-1 font-sans select-none   h-[86vh] overflow-y-auto  overflow-x-hidden scrollbar-thin pb-2"  > 
-      <TransitionGroup name="card"> 
-      <div
+<div class="drag-region fixed top-2 right-4 w-[300px] flex flex-col h-screen">
+    <TopNavBar class="z-50 mb-1" :pendingCount="pendingCount" altertitle="提示面板"  />
+     <div v-if="isReady &&(cards.length > 0 || cardscheduleds.length>0)" class="fixed-1 h-full  right-4 pr-0.5 space-y-1 font-sans select-none   h-[86vh] overflow-y-auto  overflow-x-hidden scrollbar-thin  pb-4 "  > 
+      <TransitionGroup name="card" class=""> 
+      <div v-if="viewfilter==='all' || viewfilter==='scheduled'"
       v-for="card in cardscheduleds"
       :key="card.id"
       @click="onCardClick(card)"
@@ -235,7 +274,7 @@ const onCardDelayed = (card: PromptCard) => {
     </div> 
 
        <!-- 即时类提示卡片 -->
-    <div
+    <div v-if="viewfilter==='all' || viewfilter==='immediate'"
       v-for="card in cards"
       :key="card.id"
       :data-new="card._isNew"
@@ -274,10 +313,35 @@ const onCardDelayed = (card: PromptCard) => {
     </div> 
     </TransitionGroup>
   </div>
+  <!-- 空提示 -->
+  <div v-else class="fixed-1 h-full top-2  right-4 pr-0.5 space-y-1 font-sans select-none   h-[86vh] overflow-y-auto  overflow-x-hidden scrollbar-thin pb-2" >
+    <div class=" w-[294px] rounded-2xl bg-white/90   px-1 py-1 shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition. dark:bg-gray-400/90 dark:text-white ">
+      <a-empty class="flex flex-col items-center justify-center"
+        image="https://gw.alipayobjects.com/mdn/miniapp_social/afts/img/A*pevERLJC9v0AAAAAAAAAAABjAQAAAQ/original"
+        :image-style="{
+          height: '60px',
+        }"
+      >
+        <template #description>
+          <span class="prompt-text">
+            <!-- 📝 还没有任何提示<br/>
+            点击下方按钮创建你的第一个提示 -->
+            {{ getPrompt(true) }}
+          </span>
+          <br/>
+          <a-button type="dashed" class="text-orange-400 dark:text-orange-300 mt-2" size="small" style="width:80px" @click="OpenTipsWindow">创建提示</a-button>
+        </template>
+      </a-empty>
+    </div> 
+  </div>
 </div>
  
 </template>
 <style>
+.prompt-text {
+  white-space: pre-wrap;
+}
+
 /* 只有 data-new="true" 的卡片才有 enter 动画 */
 .card-enter-from[data-new="true"] {
   opacity: 0;

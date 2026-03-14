@@ -2,6 +2,7 @@ package services
 
 import (
 	"database/sql"
+	"log"
 	"os"
 	"path/filepath"
 	"time"
@@ -23,7 +24,7 @@ func getSafeDBPath() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return filepath.Join(appDir, "suitips.db"), nil
+	return filepath.Join(appDir, "suitips.db?_busy_timeout=5000&_journal=WAL&_sync=NORMAL"), nil
 }
 func NewSuiStore() (*SuiStore, error) {
 	dbPath, err := getSafeDBPath()
@@ -59,27 +60,39 @@ func NewSuiStore() (*SuiStore, error) {
 		state INTEGER DEFAULT 1,
 		snoozecount INTEGER DEFAULT 0
 	);
+
+	CREATE TABLE IF NOT EXISTS  appconfig (
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		key TEXT UNIQUE,
+		type TEXT,
+		value TEXT,
+		createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+		description TEXT,
+		state INTEGER DEFAULT 0
+	);
 	`)
 	if err != nil {
 		return nil, err
 	}
-	// 检查是否已存在数据
-	row := db.QueryRow(`SELECT COUNT(*) FROM hotkeys`)
-	var count int
-	err = row.Scan(&count)
+	// 初始化默认数据
+	err = InitDefaultData(db)
 	if err != nil {
-		return nil, err
-	}
-
-	if count == 0 {
-		var sqlhotkeys = OSinithotkeys()
-		_, err = db.Exec(sqlhotkeys)
-		if err != nil {
-			return nil, err
-		}
+		log.Fatal(err)
 	}
 
 	return &SuiStore{db: db}, nil
+}
+
+func InitDefaultData(db *sql.DB) error {
+	// 初始化配置
+	if _, err := db.Exec(OSinitAppConfig()); err != nil {
+		return err
+	}
+	// 初始化热键
+	if _, err := db.Exec(OSinithotkeys()); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (cs *SuiStore) Close() {
@@ -297,4 +310,62 @@ func (r *SuiStore) FindNextScheduled(now int64) (*TipInfo, error) {
 		return nil, err
 	}
 	return &tip, nil
+}
+
+// 查找定时提示的待提示数量
+func (r *SuiStore) GetFindScheduledCount() int {
+	now := time.Now().Unix()
+	row := r.db.QueryRow(`
+		SELECT COUNT(*) as count
+		FROM tipinfo
+		WHERE state = 1
+		  AND type = 'scheduled'
+		  AND COALESCE(snoozeat, expireat) >= ?
+		ORDER BY COALESCE(snoozeat, expireat) ASC
+		LIMIT 1
+	`, now)
+
+	var count int
+	err := row.Scan(&count)
+	if err != nil {
+		return 0
+	}
+	return count
+}
+
+// 根据key获取配置项
+func (r *SuiStore) GetAppConfig(key string) (string, error) {
+	row := r.db.QueryRow(`
+		SELECT value
+		FROM appconfig
+		WHERE key = ?
+	`, key)
+
+	var value string
+	err := row.Scan(&value)
+	if err == sql.ErrNoRows {
+		return "en", nil
+	}
+	if err != nil {
+		return "en", err
+	}
+	return value, nil
+}
+
+// 设置或更新配置项
+func (r *SuiStore) SetAppConfig(key, value string) error {
+	_, err := r.db.Exec(`
+		INSERT INTO appconfig (key, type, value, description)
+		VALUES (?, 'user', ?, '')
+		ON CONFLICT(key) DO UPDATE SET value=excluded.value
+	`, key, value)
+	return err
+}
+
+func (s *SuiStore) GetLanguage() string {
+	lang, err := s.GetAppConfig("language")
+	if err != nil || lang == "" {
+		return "en"
+	}
+	return lang
 }

@@ -45,6 +45,23 @@ export class Hotkey {
     }
 }
 
+export class SuiStore {
+
+    /** Creates a new SuiStore instance. */
+    constructor($$source: Partial<SuiStore> = {}) {
+
+        Object.assign(this, $$source);
+    }
+
+    /**
+     * Creates a new SuiStore instance from a string or object.
+     */
+    static createFrom($$source: any = {}): SuiStore {
+        let $$parsedSource = typeof $$source === 'string' ? JSON.parse($$source) : $$source;
+        return new SuiStore($$parsedSource as Partial<SuiStore>);
+    }
+}
+
 export class TipInfo {
     "id": number;
     "type": string;

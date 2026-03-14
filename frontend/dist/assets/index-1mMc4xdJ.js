@@ -6,7 +6,7 @@ var __commonJS = (cb, mod) => function __require() {
 };
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 var require_index_001 = __commonJS({
-  "assets/index-CFp11oG_.js"(exports, module) {
+  "assets/index-1mMc4xdJ.js"(exports, module) {
     (function polyfill() {
       const relList = document.createElement("link").relList;
       if (relList && relList.supports && relList.supports("modulepreload")) {
@@ -100463,7 +100463,7 @@ summary tabindex target title type usemap value width wmode wrap`;
       }
     });
     const index = withInstall(AFlex);
-    const components$2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+    const components$3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
       __proto__: null,
       Affix: Affix$1,
       Alert: index$r,
@@ -100677,8 +100677,8 @@ summary tabindex target title type usemap value width wmode wrap`;
       darkAlgorithm: derivative
     };
     const install = function(app2) {
-      Object.keys(components$2).forEach((key2) => {
-        const component = components$2[key2];
+      Object.keys(components$3).forEach((key2) => {
+        const component = components$3[key2];
         if (component.install) {
           app2.use(component);
         }
@@ -100715,7 +100715,7 @@ summary tabindex target title type usemap value width wmode wrap`;
       themeConfig.value = getAntdCurrentTheme(resolvedTheme);
     }
     function initTheme() {
-      const savedTheme = localStorage.getItem(THEME_KEY) || "systemdefault";
+      const savedTheme = localStorage.getItem(THEME_KEY) || "light";
       applyTheme(savedTheme);
       window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
         const current = getCurrentTheme();
@@ -100729,14 +100729,14 @@ summary tabindex target title type usemap value width wmode wrap`;
       applyTheme(mode);
     }
     function getCurrentTheme() {
-      return localStorage.getItem(THEME_KEY) || "systemdefault";
+      return localStorage.getItem(THEME_KEY) || "light";
     }
     const currentMode = ref(localStorage.getItem("theme") || "light");
     const themeConfig = ref(getAntdCurrentTheme(currentMode.value));
     function getAntdCurrentTheme(mode) {
       return mode === "dark" ? darkTheme : lightTheme;
     }
-    const _sfc_main$c = /* @__PURE__ */ defineComponent({
+    const _sfc_main$e = /* @__PURE__ */ defineComponent({
       __name: "App",
       setup(__props) {
         const applyTheme2 = () => {
@@ -100770,7 +100770,7 @@ summary tabindex target title type usemap value width wmode wrap`;
       }
       return target;
     };
-    const App = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-6d3f208f"]]);
+    const App = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-6d3f208f"]]);
     /*!
       * vue-router v4.5.1
       * (c) 2025 Eduardo San Martin Morote
@@ -106962,7 +106962,7 @@ summary tabindex target title type usemap value width wmode wrap`;
       target.__INTLIFY__ = true;
       setDevToolsHook(target.__INTLIFY_DEVTOOLS_GLOBAL_HOOK__);
     }
-    const _hoisted_1$a = {
+    const _hoisted_1$c = {
       viewBox: "64 64 896 896",
       focusable: "false",
       width: "1em",
@@ -106971,11 +106971,11 @@ summary tabindex target title type usemap value width wmode wrap`;
       "aria-hidden": "true",
       style: { "vertical-align": "-0.125em", "display": "inline-block" }
     };
-    const _sfc_main$b = /* @__PURE__ */ defineComponent({
+    const _sfc_main$d = /* @__PURE__ */ defineComponent({
       __name: "ShortcutOutlined",
       setup(__props) {
         return (_ctx, _cache) => {
-          return openBlock(), createElementBlock("svg", _hoisted_1$a, _cache[0] || (_cache[0] = [
+          return openBlock(), createElementBlock("svg", _hoisted_1$c, _cache[0] || (_cache[0] = [
             createBaseVNode("path", { d: "M256 192h512a64 64 0 0 1 64 64v512a64 64 0 0 1-64 64H256a64 64 0 0 1-64-64V256a64 64 0 0 1 64-64zm0 64v512h512V256H256z" }, null, -1),
             createBaseVNode("path", { d: "M320 320h96v96h-96zM448 320h96v96h-96zM576 320h96v96h-96zM320 448h96v96h-96zM448 448h192v96H448zM320 576h96v96h-96zM448 576h96v96h-96zM576 576h96v96h-96z" }, null, -1)
           ]));
@@ -108660,15 +108660,39 @@ summary tabindex target title type usemap value width wmode wrap`;
     window._wails = window._wails || {};
     window._wails.invoke = invoke;
     invoke("wails:runtime:ready");
-    const _hoisted_1$9 = { class: "flex items-center justify-between px-4 py-3" };
-    const _hoisted_2$6 = { style: { "text-align": "left" } };
-    const _hoisted_3$6 = { class: "text-sm text-gray-900 font-medium dark:text-white" };
-    const _hoisted_4$6 = {
+    function GetOS() {
+      return ByID(3681865303);
+    }
+    let cachedOS = null;
+    let osInitPromise;
+    function initOS() {
+      if (!osInitPromise) {
+        osInitPromise = GetOS().then((os) => {
+          cachedOS = os;
+        });
+      }
+      return osInitPromise;
+    }
+    function getOS() {
+      if (!cachedOS) {
+        throw new Error("OS not initialized yet, await OS_READY first");
+      }
+      return cachedOS;
+    }
+    function IsmacOS() {
+      console.log("检测操作系统:", cachedOS);
+      return cachedOS === "darwin";
+    }
+    const OS_READY = initOS();
+    const _hoisted_1$b = { class: "flex items-center justify-between px-4 py-3" };
+    const _hoisted_2$7 = { style: { "text-align": "left" } };
+    const _hoisted_3$7 = { class: "text-sm text-gray-900 font-medium dark:text-white" };
+    const _hoisted_4$7 = {
       key: 0,
       class: "text-xs text-gray-500 mt-1"
     };
     const _hoisted_5$6 = { class: "inline-flex items-center cursor-pointer" };
-    const _sfc_main$a = /* @__PURE__ */ defineComponent({
+    const _sfc_main$c = /* @__PURE__ */ defineComponent({
       __name: "ListRow",
       props: {
         label: {},
@@ -108676,10 +108700,10 @@ summary tabindex target title type usemap value width wmode wrap`;
       },
       setup(__props) {
         return (_ctx, _cache) => {
-          return openBlock(), createElementBlock("div", _hoisted_1$9, [
-            createBaseVNode("div", _hoisted_2$6, [
-              createBaseVNode("div", _hoisted_3$6, toDisplayString$1(_ctx.label), 1),
-              _ctx.subLabel ? (openBlock(), createElementBlock("div", _hoisted_4$6, toDisplayString$1(_ctx.subLabel), 1)) : createCommentVNode("", true)
+          return openBlock(), createElementBlock("div", _hoisted_1$b, [
+            createBaseVNode("div", _hoisted_2$7, [
+              createBaseVNode("div", _hoisted_3$7, toDisplayString$1(_ctx.label), 1),
+              _ctx.subLabel ? (openBlock(), createElementBlock("div", _hoisted_4$7, toDisplayString$1(_ctx.subLabel), 1)) : createCommentVNode("", true)
             ]),
             createBaseVNode("label", _hoisted_5$6, [
               renderSlot(_ctx.$slots, "default")
@@ -108688,11 +108712,19 @@ summary tabindex target title type usemap value width wmode wrap`;
         };
       }
     });
-    const app$1 = {
+    const app$2 = {
       title: "My App",
-      login: "Login"
+      login: "Login",
+      menu: {
+        about: "About",
+        quit: "Quit",
+        preferences: "Settings",
+        writeprompts: "Open New Column",
+        wetips: "Open Prompts Bar",
+        version: "Version:v0.1"
+      }
     };
-    const menus$1 = {
+    const menus$2 = {
       about: "About",
       general: "General",
       shortcut: "Shortcut key",
@@ -108700,7 +108732,7 @@ summary tabindex target title type usemap value width wmode wrap`;
       wetips: "Wetips",
       writeprompts: "Write Tip"
     };
-    const components$1 = {
+    const components$2 = {
       general: {
         title: {
           application: "Apply settings",
@@ -108740,26 +108772,44 @@ summary tabindex target title type usemap value width wmode wrap`;
         }
       }
     };
+    const pages$2 = {
+      home: {
+        TopNavBar: {
+          pending: "PENDING",
+          saved: "SAVED",
+          all: "ALL"
+        }
+      }
+    };
     const en = {
-      app: app$1,
-      menus: menus$1,
-      components: components$1
+      app: app$2,
+      menus: menus$2,
+      components: components$2,
+      pages: pages$2
     };
-    const app = {
+    const app$1 = {
       title: "我的应用",
-      login: "登录"
+      login: "登录",
+      menu: {
+        about: "关于",
+        quit: "退出应用",
+        preferences: "偏好设置",
+        writeprompts: "去写提示",
+        wetips: "轻提示栏",
+        version: "版本:v0.1"
+      }
     };
-    const menus = {
+    const menus$1 = {
       general: "通用设置",
       shortcut: "快捷键",
       remote: "远程共享",
       history: "历史记录",
       backup: "数据备份",
       about: "关于",
-      wetips: "轻提示",
+      wetips: "轻提示栏",
       writeprompts: "写提示"
     };
-    const components = {
+    const components$1 = {
       home: {},
       general: {
         title: {
@@ -108840,15 +108890,143 @@ summary tabindex target title type usemap value width wmode wrap`;
         }
       }
     };
+    const pages$1 = {
+      home: {
+        TopNavBar: {
+          pending: "待提示",
+          saved: "已保存",
+          all: "全部提示"
+        }
+      }
+    };
     const zh = {
+      app: app$1,
+      menus: menus$1,
+      components: components$1,
+      pages: pages$1
+    };
+    const app = {
+      login: "登入",
+      menu: {
+        about: "關於",
+        preferences: "偏好設定",
+        quit: "退出應用",
+        version: "版本:v0.1",
+        wetips: "輕提示欄",
+        writeprompts: "去寫提示"
+      },
+      title: "我的應用"
+    };
+    const components = {
+      general: {
+        buttons: {
+          authorized: "已授權",
+          go_authorized: "去授權"
+        },
+        label: {
+          assistant_access: "輔助使用存取權限",
+          automatic_up: "自動檢查更新",
+          completion_time: "預設完成時間",
+          disk_access: "完全磁碟存取權限",
+          language: "介面語言",
+          next_up: "下次啟動自動檢查更新",
+          notify_copy: "提示音效",
+          ocrimg: "圖片OCR",
+          prompt_time: "預設提示時長",
+          startup: "登入時啟動",
+          theme: "主題模式"
+        },
+        subLabel: {
+          sb_assistant_access: "需要無障礙存取權限來操作剪切板內容",
+          sb_completion_time: "預設完成時間設定(僅適合定時提示)，單位為分鐘",
+          sb_disk_access: "需要完全磁碟存取權限來實現檔案預覽",
+          sb_prompt_time: "預設提醒時長設定(僅適合定時提示未辨識到時間)，單位為分鐘"
+        },
+        title: {
+          application: "應用程式設定",
+          exterior: "外觀設定",
+          "function": "功能設定",
+          notify: "音效設定",
+          power: "權限設定",
+          tips: "提示設定",
+          update: "應用程式更新"
+        }
+      },
+      history: {
+        buttons: {
+          clear: "清除"
+        },
+        label: {
+          maxduration: "保留時長",
+          maxrecords: "最大條數"
+        },
+        title: {
+          clear: "清除歷史記錄",
+          history: "歷史記錄"
+        }
+      },
+      remote: {
+        label: {
+          automatic_up: "自動檢查更新",
+          disk_access: "完全磁碟存取權限",
+          language: "介面語言",
+          next_up: "下次啟動自動檢查更新",
+          openremote: "允許遠端共享",
+          startup: "登入時啟動",
+          theme: "主題模式"
+        },
+        title: {
+          remoteserver: "遠端設定",
+          sharserver: "共享設定"
+        }
+      },
+      themesetting: {
+        select: {
+          opt_dark: "暗色模式",
+          opt_light: "亮色模式"
+        }
+      },
+      tipduration: {
+        select: {
+          "5": "5",
+          "10": "10",
+          "15": "15",
+          "20": "20",
+          "30": "30",
+          "60": "60"
+        }
+      }
+    };
+    const menus = {
+      about: "關於",
+      backup: "資料備份",
+      general: "通用設定",
+      history: "歷史記錄",
+      remote: "遠端分享",
+      shortcut: "快速鍵",
+      wetips: "輕提示欄",
+      writeprompts: "寫提示"
+    };
+    const pages = {
+      home: {
+        TopNavBar: {
+          all: "全部提示",
+          pending: "待提示",
+          saved: "已儲存"
+        }
+      }
+    };
+    const zhHK = {
       app,
+      components,
       menus,
-      components
+      pages
     };
     async function loadLocaleMessages(locale2) {
       const messagesMap = {
         en,
-        zh
+        zh,
+        "zh-HK": zhHK
       };
       return messagesMap[locale2];
     }
@@ -108866,12 +109044,34 @@ summary tabindex target title type usemap value width wmode wrap`;
       i18n.global.setLocaleMessage(locale2, messages2);
       i18n.global.locale.value = locale2;
     }
-    const _sfc_main$9 = /* @__PURE__ */ defineComponent({
+    function HideTipsWindow() {
+      return ByID(3042050268);
+    }
+    function OpenSecondWindow() {
+      return ByID(2561160154);
+    }
+    function OpenTipsWindow() {
+      return ByID(70083156);
+    }
+    function SetLanguage(lang) {
+      return ByID(1152097840, lang);
+    }
+    const langChannel = new BroadcastChannel("language");
+    const themeChannel = new BroadcastChannel("theme");
+    const settingChannel = new BroadcastChannel("settings");
+    const _sfc_main$b = /* @__PURE__ */ defineComponent({
       __name: "LanguageSwitcher",
       setup(__props) {
-        const locale2 = ref(i18n.global.locale.value);
-        const switchLang = async () => {
-          await setupI18n(locale2.value);
+        const locale2 = computed({
+          get: () => i18n.global.locale.value,
+          set: (val) => {
+            switchLang(val);
+          }
+        });
+        const switchLang = async (lang) => {
+          await setupI18n(lang);
+          await SetLanguage(lang);
+          langChannel.postMessage(lang);
         };
         return (_ctx, _cache) => {
           const _component_a_select_option = resolveComponent("a-select-option");
@@ -108882,8 +109082,7 @@ summary tabindex target title type usemap value width wmode wrap`;
               ref: "select",
               value: locale2.value,
               "onUpdate:value": _cache[0] || (_cache[0] = ($event) => locale2.value = $event),
-              style: { "width": "100px" },
-              onChange: switchLang
+              style: { "width": "100px" }
             }, {
               default: withCtx(() => [
                 createVNode(_component_a_select_option, { value: "zh" }, {
@@ -108900,7 +109099,7 @@ summary tabindex target title type usemap value width wmode wrap`;
                   _: 1,
                   __: [2]
                 }),
-                createVNode(_component_a_select_option, { value: "zh-Hk" }, {
+                createVNode(_component_a_select_option, { value: "zh-HK" }, {
                   default: withCtx(() => _cache[3] || (_cache[3] = [
                     createTextVNode("繁體中文")
                   ])),
@@ -108914,8 +109113,8 @@ summary tabindex target title type usemap value width wmode wrap`;
         };
       }
     });
-    const _hoisted_1$8 = { class: "space-y-2" };
-    const _sfc_main$8 = /* @__PURE__ */ defineComponent({
+    const _hoisted_1$a = { class: "space-y-2" };
+    const _sfc_main$a = /* @__PURE__ */ defineComponent({
       __name: "ThemeSetting",
       setup(__props) {
         const themevalue = ref("systemdefault");
@@ -108930,7 +109129,7 @@ summary tabindex target title type usemap value width wmode wrap`;
         return (_ctx, _cache) => {
           const _component_a_select_option = resolveComponent("a-select-option");
           const _component_a_select = resolveComponent("a-select");
-          return openBlock(), createElementBlock("div", _hoisted_1$8, [
+          return openBlock(), createElementBlock("div", _hoisted_1$a, [
             createVNode(_component_a_select, {
               value: themevalue.value,
               "onUpdate:value": _cache[0] || (_cache[0] = ($event) => themevalue.value = $event),
@@ -108957,13 +109156,13 @@ summary tabindex target title type usemap value width wmode wrap`;
         };
       }
     });
-    const _hoisted_1$7 = { class: "text-lg font-bold text-gray-800 dark:text-white" };
-    const _hoisted_2$5 = { class: "bg-white rounded-lg shadow divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700" };
-    const _hoisted_3$5 = { class: "text-lg font-bold text-gray-800 dark:text-white" };
-    const _hoisted_4$5 = { class: "bg-white rounded-lg shadow divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700" };
+    const _hoisted_1$9 = { class: "text-lg font-bold text-gray-800 dark:text-white" };
+    const _hoisted_2$6 = { class: "bg-white rounded-lg shadow divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700" };
+    const _hoisted_3$6 = { class: "text-lg font-bold text-gray-800 dark:text-white" };
+    const _hoisted_4$6 = { class: "bg-white rounded-lg shadow divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700" };
     const _hoisted_5$5 = { class: "text-lg font-bold text-gray-800 dark:text-white" };
-    const _hoisted_6$4 = { class: "bg-white rounded-lg shadow divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700" };
-    const _sfc_main$7 = /* @__PURE__ */ defineComponent({
+    const _hoisted_6$3 = { class: "bg-white rounded-lg shadow divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700" };
+    const _sfc_main$9 = /* @__PURE__ */ defineComponent({
       __name: "Index",
       setup(__props) {
         ref(false);
@@ -109000,9 +109199,9 @@ summary tabindex target title type usemap value width wmode wrap`;
           const _component_a_select = resolveComponent("a-select");
           return openBlock(), createElementBlock("div", null, [
             createBaseVNode("section", null, [
-              createBaseVNode("h2", _hoisted_1$7, toDisplayString$1(_ctx.$t("components.general.title.tips")), 1),
-              createBaseVNode("div", _hoisted_2$5, [
-                createVNode(_sfc_main$a, {
+              createBaseVNode("h2", _hoisted_1$9, toDisplayString$1(_ctx.$t("components.general.title.tips")), 1),
+              createBaseVNode("div", _hoisted_2$6, [
+                createVNode(_sfc_main$c, {
                   label: _ctx.$t("components.general.label.prompt_time"),
                   subLabel: _ctx.$t("components.general.subLabel.sb_prompt_time")
                 }, {
@@ -109062,7 +109261,7 @@ summary tabindex target title type usemap value width wmode wrap`;
                   ]),
                   _: 1
                 }, 8, ["label", "subLabel"]),
-                createVNode(_sfc_main$a, {
+                createVNode(_sfc_main$c, {
                   label: _ctx.$t("components.general.label.completion_time"),
                   subLabel: _ctx.$t("components.general.subLabel.sb_completion_time")
                 }, {
@@ -109124,9 +109323,9 @@ summary tabindex target title type usemap value width wmode wrap`;
                   _: 1
                 }, 8, ["label", "subLabel"])
               ]),
-              createBaseVNode("h2", _hoisted_3$5, toDisplayString$1(_ctx.$t("components.general.title.notify")), 1),
-              createBaseVNode("div", _hoisted_4$5, [
-                createVNode(_sfc_main$a, {
+              createBaseVNode("h2", _hoisted_3$6, toDisplayString$1(_ctx.$t("components.general.title.notify")), 1),
+              createBaseVNode("div", _hoisted_4$6, [
+                createVNode(_sfc_main$c, {
                   label: _ctx.$t("components.general.label.notify_copy"),
                   subLabel: ""
                 }, {
@@ -109145,22 +109344,22 @@ summary tabindex target title type usemap value width wmode wrap`;
                 }, 8, ["label"])
               ]),
               createBaseVNode("h2", _hoisted_5$5, toDisplayString$1(_ctx.$t("components.general.title.exterior")), 1),
-              createBaseVNode("div", _hoisted_6$4, [
-                createVNode(_sfc_main$a, {
+              createBaseVNode("div", _hoisted_6$3, [
+                createVNode(_sfc_main$c, {
                   label: _ctx.$t("components.general.label.language"),
                   subLabel: ""
                 }, {
                   default: withCtx(() => [
-                    createVNode(_sfc_main$9)
+                    createVNode(_sfc_main$b)
                   ]),
                   _: 1
                 }, 8, ["label"]),
-                createVNode(_sfc_main$a, {
+                createVNode(_sfc_main$c, {
                   label: _ctx.$t("components.general.label.theme"),
                   subLabel: ""
                 }, {
                   default: withCtx(() => [
-                    createVNode(_sfc_main$8)
+                    createVNode(_sfc_main$a)
                   ]),
                   _: 1
                 }, 8, ["label"])
@@ -109170,9 +109369,9 @@ summary tabindex target title type usemap value width wmode wrap`;
         };
       }
     });
-    const General = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["__scopeId", "data-v-b9ad3a23"]]);
-    const _hoisted_1$6 = ["innerHTML"];
-    const _sfc_main$6 = /* @__PURE__ */ defineComponent({
+    const General = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["__scopeId", "data-v-b9ad3a23"]]);
+    const _hoisted_1$8 = ["innerHTML"];
+    const _sfc_main$8 = /* @__PURE__ */ defineComponent({
       __name: "ShortcutInput",
       props: {
         modelValue: {}
@@ -109301,7 +109500,7 @@ summary tabindex target title type usemap value width wmode wrap`;
             disabled: ""
           }, {
             suffix: withCtx(() => [
-              createBaseVNode("span", { innerHTML: display.value }, null, 8, _hoisted_1$6)
+              createBaseVNode("span", { innerHTML: display.value }, null, 8, _hoisted_1$8)
             ]),
             _: 1
           });
@@ -109408,6 +109607,205 @@ summary tabindex target title type usemap value width wmode wrap`;
       const key2 = keyMap2[keycode] ?? "Unknown";
       return [...mods, key2].join("+");
     }
+    function formatHotkeyStringWin(keycode, modifiers) {
+      const keyMap2 = {
+        65: "A",
+        66: "B",
+        67: "C",
+        68: "D",
+        69: "E",
+        70: "F",
+        71: "G",
+        72: "H",
+        73: "I",
+        74: "J",
+        75: "K",
+        76: "L",
+        77: "M",
+        78: "N",
+        79: "O",
+        80: "P",
+        81: "Q",
+        82: "R",
+        83: "S",
+        84: "T",
+        85: "U",
+        86: "V",
+        87: "W",
+        88: "X",
+        89: "Y",
+        90: "Z",
+        13: "Enter",
+        27: "Esc",
+        32: "Space",
+        112: "F1",
+        113: "F2",
+        114: "F3",
+        115: "F4",
+        116: "F5",
+        117: "F6",
+        118: "F7",
+        119: "F8",
+        120: "F9",
+        121: "F10",
+        122: "F11",
+        123: "F12",
+        37: "Left",
+        38: "Up",
+        39: "Right",
+        40: "Down"
+      };
+      const mods = [];
+      if (modifiers & 1) mods.push("Alt");
+      if (modifiers & 2) mods.push("Ctrl");
+      if (modifiers & 4) mods.push("Shift");
+      if (modifiers & 8) mods.push("Win");
+      const key2 = keyMap2[keycode] ?? `KeyCode(${keycode})`;
+      return [...mods, key2].join("+");
+    }
+    const _hoisted_1$7 = ["innerHTML"];
+    const _sfc_main$7 = /* @__PURE__ */ defineComponent({
+      __name: "WinShortcutInput",
+      props: {
+        modelValue: {}
+      },
+      emits: ["update:modelValue"],
+      setup(__props, { emit: __emit }) {
+        const props2 = __props;
+        const emit2 = __emit;
+        const modifierKeys = ["Shift", "Control", "Alt", "Meta"];
+        const modifierLabels = {
+          Shift: "Shift",
+          Control: "Ctrl",
+          Alt: "Alt",
+          Meta: "Win"
+          // Windows键
+        };
+        const normalizeModifier = (key2) => {
+          switch (key2.toUpperCase()) {
+            case "CMD":
+            case "COMMAND":
+            case "WIN":
+            case "WINDOWS":
+              return "Meta";
+            case "CTRL":
+              return "Control";
+            case "OPTION":
+              return "Alt";
+            default:
+              return key2;
+          }
+        };
+        const pressedModifiers = ref(/* @__PURE__ */ new Set());
+        const finalModifiers = ref(/* @__PURE__ */ new Set());
+        const mainKey = ref(null);
+        const isRecording = ref(false);
+        const isFinalized = ref(false);
+        const display = computed(() => {
+          const activeSet = isFinalized.value ? finalModifiers.value : pressedModifiers.value;
+          const modifiers = modifierKeys.map((key2) => {
+            const isActive = activeSet.has(key2);
+            const color = isActive ? "#1890ff" : "#999";
+            return `<span style="color: ${color}; font-weight: bold;">${modifierLabels[key2]}</span>`;
+          }).join("  ");
+          const keyColor = isFinalized.value && mainKey.value ? "#1890ff" : "#000";
+          const keyPart = mainKey.value ? `<span style="margin-left: 6px; color: ${keyColor}; font-weight: bold;">${mainKey.value.toUpperCase()}</span>` : "";
+          return modifiers + (mainKey.value ? "  " : "") + keyPart;
+        });
+        const shortcutString = computed(() => {
+          if (!isFinalized.value || !mainKey.value || finalModifiers.value.size === 0) {
+            return "";
+          }
+          return [...finalModifiers.value].join("+") + "+" + mainKey.value.toUpperCase();
+        });
+        watch(shortcutString, (val) => {
+          emit2("update:modelValue", val);
+        });
+        const startRecording = () => {
+          isRecording.value = true;
+          isFinalized.value = false;
+          mainKey.value = null;
+          pressedModifiers.value.clear();
+          finalModifiers.value.clear();
+        };
+        const finalize = () => {
+          if (pressedModifiers.value.size === 0 || !mainKey.value) {
+            startRecording();
+            return;
+          }
+          isFinalized.value = true;
+          finalModifiers.value = new Set(pressedModifiers.value);
+        };
+        const clearAll = () => {
+          isRecording.value = false;
+          isFinalized.value = false;
+          pressedModifiers.value.clear();
+          finalModifiers.value.clear();
+          mainKey.value = null;
+          emit2("update:modelValue", "");
+        };
+        const onKeyDown2 = (e2) => {
+          var _a2;
+          if (!isRecording.value || isFinalized.value) return;
+          if (modifierKeys.includes(e2.key)) {
+            pressedModifiers.value.add(e2.key);
+          } else if (!["Tab", "Escape"].includes(e2.key)) {
+            mainKey.value = e2.key.length === 1 ? e2.key.toUpperCase() : e2.key;
+            finalize();
+            (_a2 = document.activeElement) == null ? void 0 : _a2.blur();
+          }
+          e2.preventDefault();
+        };
+        const onKeyUp = (e2) => {
+          if (!isRecording.value || isFinalized.value) return;
+          if (modifierKeys.includes(e2.key)) {
+            pressedModifiers.value.delete(e2.key);
+          }
+        };
+        onMounted(() => {
+          window.addEventListener("keydown", onKeyDown2);
+          window.addEventListener("keyup", onKeyUp);
+        });
+        onBeforeUnmount(() => {
+          window.removeEventListener("keydown", onKeyDown2);
+          window.removeEventListener("keyup", onKeyUp);
+        });
+        watch(() => props2.modelValue, (val) => {
+          if (!val) {
+            clearAll();
+            return;
+          }
+          const parts = val.split("+").map(normalizeModifier);
+          const mods = parts.filter((p2) => modifierKeys.includes(p2));
+          const key2 = parts.find((p2) => !modifierKeys.includes(p2));
+          if (mods.length && key2) {
+            finalModifiers.value = new Set(mods);
+            mainKey.value = key2;
+            isFinalized.value = true;
+          } else {
+            clearAll();
+          }
+        }, { immediate: true });
+        return (_ctx, _cache) => {
+          const _component_a_input = resolveComponent("a-input");
+          return openBlock(), createBlock(_component_a_input, {
+            style: { "width": "160px" },
+            readonly: "",
+            value: "",
+            onFocus: startRecording,
+            onMousedown: _cache[0] || (_cache[0] = withModifiers(() => {
+            }, ["stop"])),
+            onBlur: _cache[1] || (_cache[1] = ($event) => isRecording.value = false),
+            disabled: ""
+          }, {
+            suffix: withCtx(() => [
+              createBaseVNode("span", { innerHTML: display.value }, null, 8, _hoisted_1$7)
+            ]),
+            _: 1
+          });
+        };
+      }
+    });
     class Hotkey {
       /** Creates a new Hotkey instance. */
       constructor($$source = {}) {
@@ -109503,10 +109901,16 @@ summary tabindex target title type usemap value width wmode wrap`;
         return new TipInfo($$parsedSource);
       }
     }
+    function GetFindScheduledCount() {
+      return ByID(1803886345);
+    }
     function GetHotkeys() {
       return ByID(23462219).then(($result) => {
         return $$createType3($result);
       });
+    }
+    function GetLanguage() {
+      return ByID(4179034138);
     }
     function GetTips() {
       return ByID(1462738058).then(($result) => {
@@ -109529,10 +109933,11 @@ summary tabindex target title type usemap value width wmode wrap`;
     const $$createType2 = Hotkey.createFrom;
     const $$createType3 = Array$1($$createType2);
     const $$createType4 = Array$1($$createType0);
-    const _hoisted_1$5 = { class: "bg-white rounded-lg shadow divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700" };
-    const _sfc_main$5 = /* @__PURE__ */ defineComponent({
+    const _hoisted_1$6 = { class: "bg-white rounded-lg shadow divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700" };
+    const _sfc_main$6 = /* @__PURE__ */ defineComponent({
       __name: "Index",
       setup(__props) {
+        const ismacos = ref(false);
         const OpenShortcut = ref("");
         const OpenSetting = ref("");
         const isInitialized = ref(false);
@@ -109580,41 +109985,57 @@ summary tabindex target title type usemap value width wmode wrap`;
         const Gethotkey = async () => {
           hotkeyentry.value = await GetHotkeys();
           if (hotkeyentry.value && hotkeyentry.value.length > 0) {
-            OpenShortcut.value = formatHotkeyStringmac(hotkeyentry.value[0].keycode, hotkeyentry.value[0].modifiers);
-            OpenSetting.value = formatHotkeyStringmac(hotkeyentry.value[1].keycode, hotkeyentry.value[1].modifiers);
+            if (ismacos.value) {
+              OpenShortcut.value = formatHotkeyStringmac(hotkeyentry.value[0].keycode, hotkeyentry.value[0].modifiers);
+              OpenSetting.value = formatHotkeyStringmac(hotkeyentry.value[1].keycode, hotkeyentry.value[1].modifiers);
+            } else {
+              OpenShortcut.value = formatHotkeyStringWin(hotkeyentry.value[0].keycode, hotkeyentry.value[0].modifiers);
+              OpenSetting.value = formatHotkeyStringWin(hotkeyentry.value[1].keycode, hotkeyentry.value[1].modifiers);
+            }
             await nextTick();
             isInitialized.value = true;
           }
         };
         onMounted(async () => {
+          ismacos.value = IsmacOS();
           Gethotkey();
         });
         return (_ctx, _cache) => {
           return openBlock(), createElementBlock(Fragment, null, [
-            _cache[2] || (_cache[2] = createBaseVNode("h2", { class: "text-lg font-bold text-gray-800 dark:text-white" }, "快捷键", -1)),
+            _cache[4] || (_cache[4] = createBaseVNode("h2", { class: "text-lg font-bold text-gray-800 dark:text-white" }, "快捷键", -1)),
             createBaseVNode("div", null, [
-              createBaseVNode("div", _hoisted_1$5, [
-                createVNode(_sfc_main$a, {
+              createBaseVNode("div", _hoisted_1$6, [
+                createVNode(_sfc_main$c, {
                   label: "打开轻提示窗口",
                   subLabel: ""
                 }, {
                   default: withCtx(() => [
-                    createVNode(_sfc_main$6, {
+                    ismacos.value ? (openBlock(), createBlock(_sfc_main$8, {
+                      key: 0,
                       modelValue: OpenShortcut.value,
                       "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => OpenShortcut.value = $event)
-                    }, null, 8, ["modelValue"])
+                    }, null, 8, ["modelValue"])) : (openBlock(), createBlock(_sfc_main$7, {
+                      key: 1,
+                      modelValue: OpenShortcut.value,
+                      "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => OpenShortcut.value = $event)
+                    }, null, 8, ["modelValue"]))
                   ]),
                   _: 1
                 }),
-                createVNode(_sfc_main$a, {
+                createVNode(_sfc_main$c, {
                   label: "打开写提示窗口",
                   subLabel: ""
                 }, {
                   default: withCtx(() => [
-                    createVNode(_sfc_main$6, {
+                    ismacos.value ? (openBlock(), createBlock(_sfc_main$8, {
+                      key: 0,
                       modelValue: OpenSetting.value,
-                      "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => OpenSetting.value = $event)
-                    }, null, 8, ["modelValue"])
+                      "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => OpenSetting.value = $event)
+                    }, null, 8, ["modelValue"])) : (openBlock(), createBlock(_sfc_main$7, {
+                      key: 1,
+                      modelValue: OpenSetting.value,
+                      "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => OpenSetting.value = $event)
+                    }, null, 8, ["modelValue"]))
                   ]),
                   _: 1
                 })
@@ -109624,14 +110045,14 @@ summary tabindex target title type usemap value width wmode wrap`;
         };
       }
     });
-    const Shortcut = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-74278974"]]);
-    const _hoisted_1$4 = { class: "w-full h-full flex items-center justify-center" };
-    const _hoisted_2$4 = { class: "w-[420px] rounded-2xl bg-neutral-50 dark:bg-gray-800 px-8 py-10 text-center shadow-sm border border-neutral-100 dark:border-gray-700" };
-    const _hoisted_3$4 = {
+    const Shortcut = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-457c4b70"]]);
+    const _hoisted_1$5 = { class: "w-full h-full flex items-center justify-center" };
+    const _hoisted_2$5 = { class: "w-[420px] rounded-2xl bg-neutral-50 dark:bg-gray-800 px-8 py-10 text-center shadow-sm border border-neutral-100 dark:border-gray-700" };
+    const _hoisted_3$5 = {
       key: 0,
       class: "flex justify-center mb-4"
     };
-    const _hoisted_4$4 = {
+    const _hoisted_4$5 = {
       key: 0,
       class: "text-2xl font-semibold text-neutral-800 mb-1 dark:text-white",
       style: { "transition-delay": "80ms" }
@@ -109641,7 +110062,7 @@ summary tabindex target title type usemap value width wmode wrap`;
       class: "text-sm text-neutral-500 mb-6 dark:text-neutral-300",
       style: { "transition-delay": "120ms" }
     };
-    const _hoisted_6$3 = {
+    const _hoisted_6$2 = {
       key: 0,
       class: "text-sm text-neutral-700 leading-relaxed space-y-3 mb-6 dark:text-white",
       style: { "transition-delay": "180ms" }
@@ -109656,7 +110077,7 @@ summary tabindex target title type usemap value width wmode wrap`;
       class: "text-xs text-neutral-400 space-y-1 dark:text-white",
       style: { "transition-delay": "300ms" }
     };
-    const _sfc_main$4 = /* @__PURE__ */ defineComponent({
+    const _sfc_main$5 = /* @__PURE__ */ defineComponent({
       __name: "Index",
       setup(__props) {
         const show = ref(false);
@@ -109666,11 +110087,11 @@ summary tabindex target title type usemap value width wmode wrap`;
           }, 80);
         });
         return (_ctx, _cache) => {
-          return openBlock(), createElementBlock("div", _hoisted_1$4, [
-            createBaseVNode("div", _hoisted_2$4, [
+          return openBlock(), createElementBlock("div", _hoisted_1$5, [
+            createBaseVNode("div", _hoisted_2$5, [
               createVNode(Transition, { name: "fade-up" }, {
                 default: withCtx(() => [
-                  show.value ? (openBlock(), createElementBlock("div", _hoisted_3$4, _cache[0] || (_cache[0] = [
+                  show.value ? (openBlock(), createElementBlock("div", _hoisted_3$5, _cache[0] || (_cache[0] = [
                     createBaseVNode("div", { class: "w-10 h-10 rounded-full bg-orange-100 text-orange-500 flex items-center justify-center text-lg" }, " • ", -1)
                   ]))) : createCommentVNode("", true)
                 ]),
@@ -109678,19 +110099,19 @@ summary tabindex target title type usemap value width wmode wrap`;
               }),
               createVNode(Transition, { name: "fade-up" }, {
                 default: withCtx(() => [
-                  show.value ? (openBlock(), createElementBlock("h1", _hoisted_4$4, " 轻提示 ")) : createCommentVNode("", true)
+                  show.value ? (openBlock(), createElementBlock("h1", _hoisted_4$5, " 轻提示 ")) : createCommentVNode("", true)
                 ]),
                 _: 1
               }),
               createVNode(Transition, { name: "fade-up" }, {
                 default: withCtx(() => [
-                  show.value ? (openBlock(), createElementBlock("p", _hoisted_5$4, " Light Prompt · 桌面轻量提示工具 ")) : createCommentVNode("", true)
+                  show.value ? (openBlock(), createElementBlock("p", _hoisted_5$4, " Small Prompt · 桌面轻量提示工具 ")) : createCommentVNode("", true)
                 ]),
                 _: 1
               }),
               createVNode(Transition, { name: "fade-up" }, {
                 default: withCtx(() => [
-                  show.value ? (openBlock(), createElementBlock("div", _hoisted_6$3, _cache[1] || (_cache[1] = [
+                  show.value ? (openBlock(), createElementBlock("div", _hoisted_6$2, _cache[1] || (_cache[1] = [
                     createBaseVNode("p", null, "它不会打断你，", -1),
                     createBaseVNode("p", null, "也不会催促你。", -1),
                     createBaseVNode("div", { class: "h-2" }, null, -1),
@@ -109712,7 +110133,7 @@ summary tabindex target title type usemap value width wmode wrap`;
                 default: withCtx(() => [
                   show.value ? (openBlock(), createElementBlock("div", _hoisted_8$2, _cache[3] || (_cache[3] = [
                     createBaseVNode("p", null, "Designed & Built by Jin Gong", -1),
-                    createBaseVNode("p", null, "© 2026 Light Prompt", -1)
+                    createBaseVNode("p", null, "© 2026 Small Prompt", -1)
                   ]))) : createCommentVNode("", true)
                 ]),
                 _: 1
@@ -109722,13 +110143,13 @@ summary tabindex target title type usemap value width wmode wrap`;
         };
       }
     });
-    const About = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-b70d776b"]]);
-    const _hoisted_1$3 = { class: "flex items-center justify-between" };
-    const _hoisted_2$3 = ["onKeydown"];
-    const _hoisted_3$3 = { class: "text-sm text-neutral-400" };
-    const _hoisted_4$3 = { class: "h-full w-full" };
+    const About = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-5602a033"]]);
+    const _hoisted_1$4 = { class: "flex items-center justify-between" };
+    const _hoisted_2$4 = ["onKeydown"];
+    const _hoisted_3$4 = { class: "text-sm text-neutral-400" };
+    const _hoisted_4$4 = { class: "h-full w-full" };
     const _hoisted_5$3 = { class: "overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-gray-600 dark:divide-gray-700" };
-    const _hoisted_6$2 = { class: "w-full text-sm" };
+    const _hoisted_6$1 = { class: "w-full text-sm" };
     const _hoisted_7$1 = { class: "px-4 py-3" };
     const _hoisted_8$1 = { key: 0 };
     const _hoisted_9$1 = { class: "font-medium text-neutral-800 dark:text-neutral-100" };
@@ -109741,10 +110162,10 @@ summary tabindex target title type usemap value width wmode wrap`;
     const _hoisted_13$1 = { class: "text-center text-xs text-neutral-400" };
     const _hoisted_14$1 = { class: "px-3 text-right" };
     const _hoisted_15$1 = { class: "flex items-center justify-end gap-2" };
-    const _hoisted_16 = ["onClick"];
-    const _hoisted_17 = ["onClick"];
-    const _hoisted_18 = { key: 0 };
-    const _sfc_main$3 = /* @__PURE__ */ defineComponent({
+    const _hoisted_16$1 = ["onClick"];
+    const _hoisted_17$1 = ["onClick"];
+    const _hoisted_18$1 = { key: 0 };
+    const _sfc_main$4 = /* @__PURE__ */ defineComponent({
       __name: "Index",
       setup(__props) {
         const keyword = ref("");
@@ -109788,7 +110209,7 @@ summary tabindex target title type usemap value width wmode wrap`;
         return (_ctx, _cache) => {
           return openBlock(), createElementBlock("div", null, [
             createBaseVNode("section", null, [
-              createBaseVNode("div", _hoisted_1$3, [
+              createBaseVNode("div", _hoisted_1$4, [
                 _cache[3] || (_cache[3] = createBaseVNode("h2", { class: "text-lg font-bold text-gray-800 dark:text-white" }, "提示记录管理", -1)),
                 createBaseVNode("div", null, [
                   withDirectives(createBaseVNode("input", {
@@ -109796,15 +110217,15 @@ summary tabindex target title type usemap value width wmode wrap`;
                     placeholder: "搜索提示内容...Enther键搜索 ",
                     onKeydown: withKeys(withModifiers(onSearch, ["prevent"]), ["enter"]),
                     class: "w-64 px-3 py-1 text-sm rounded-lg border bg-white dark:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
-                  }, null, 40, _hoisted_2$3), [
+                  }, null, 40, _hoisted_2$4), [
                     [vModelText, keyword.value]
                   ])
                 ]),
-                createBaseVNode("span", _hoisted_3$3, " 共 " + toDisplayString$1(tips.value.length) + " 条 ", 1)
+                createBaseVNode("span", _hoisted_3$4, " 共 " + toDisplayString$1(tips.value.length) + " 条 ", 1)
               ]),
-              createBaseVNode("div", _hoisted_4$3, [
+              createBaseVNode("div", _hoisted_4$4, [
                 createBaseVNode("div", _hoisted_5$3, [
-                  createBaseVNode("table", _hoisted_6$2, [
+                  createBaseVNode("table", _hoisted_6$1, [
                     _cache[6] || (_cache[6] = createBaseVNode("thead", { class: "bg-neutral-100 dark:bg-gray-800 text-neutral-600 dark:text-neutral-300" }, [
                       createBaseVNode("tr", null, [
                         createBaseVNode("th", { class: "px-4 py-3 text-center" }, "标题"),
@@ -109852,7 +110273,7 @@ summary tabindex target title type usemap value width wmode wrap`;
                                 createBaseVNode("button", {
                                   onClick: ($event) => saveEdit(tip),
                                   class: "text-green-600 text-xs"
-                                }, " 保存 ", 8, _hoisted_16),
+                                }, " 保存 ", 8, _hoisted_16$1),
                                 createBaseVNode("button", {
                                   onClick: cancelEdit,
                                   class: "text-neutral-400 text-xs"
@@ -109861,12 +110282,12 @@ summary tabindex target title type usemap value width wmode wrap`;
                                 key: 1,
                                 onClick: ($event) => removeTip(tip.id),
                                 class: "w-8 text-red-500 text-xs border-2"
-                              }, " 删除 ", 8, _hoisted_17))
+                              }, " 删除 ", 8, _hoisted_17$1))
                             ])
                           ])
                         ]);
                       }), 128)),
-                      tips.value.length === 0 ? (openBlock(), createElementBlock("tr", _hoisted_18, _cache[5] || (_cache[5] = [
+                      tips.value.length === 0 ? (openBlock(), createElementBlock("tr", _hoisted_18$1, _cache[5] || (_cache[5] = [
                         createBaseVNode("td", {
                           colspan: "5",
                           class: "py-10 text-center text-neutral-400"
@@ -109881,32 +110302,20 @@ summary tabindex target title type usemap value width wmode wrap`;
         };
       }
     });
-    const History = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-584e8aa8"]]);
-    function HideTipsWindow() {
-      return ByID(1683448884);
-    }
-    function OpenSecondWindow() {
-      return ByID(1306260514);
-    }
-    function OpenTipsWindow() {
-      return ByID(2966362764);
-    }
-    const _hoisted_1$2 = { class: "h-screen w-screen flex flex-col dark:text-black dark:text-white" };
-    const _hoisted_2$2 = { class: "flex flex-1 overflow-hidden" };
-    const _hoisted_3$2 = {
-      class: "w-44 bg-gray-100/20 p-3 space-y-2 font-bold text-base dark:bg-gray-800",
-      style: { "padding-top": "40px" }
-    };
-    const _hoisted_4$2 = ["onClick"];
-    const _hoisted_5$2 = { class: "flex-1 p-4 overflow-y-auto max-h-screen scroll-container bg-gray-50 dark:bg-gray-950 scrollbar-thin" };
-    const _sfc_main$2 = /* @__PURE__ */ defineComponent({
+    const History = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-584e8aa8"]]);
+    const _hoisted_1$3 = { class: "h-screen w-screen flex flex-col dark:text-black dark:text-white" };
+    const _hoisted_2$3 = { class: "flex flex-1 overflow-hidden" };
+    const _hoisted_3$3 = ["onClick"];
+    const _hoisted_4$3 = { class: "flex-1 p-4 overflow-y-auto max-h-screen scroll-container bg-gray-50 dark:bg-gray-950 scrollbar-thin" };
+    const _sfc_main$3 = /* @__PURE__ */ defineComponent({
       __name: "Index",
       setup(__props) {
+        const ismacos = ref(false);
         const settings = useSettingsStore();
         const { t: t2 } = useI18n();
         const requests = computed(() => [
           { id: "general", label: t2("menus.general"), icon: SettingOutlined, type: "component" },
-          { id: "shortcut", label: t2("menus.shortcut"), icon: _sfc_main$b, type: "component" },
+          { id: "shortcut", label: t2("menus.shortcut"), icon: _sfc_main$d, type: "component" },
           { id: "history", label: t2("menus.history"), icon: HistoryOutlined, type: "component" },
           // ====== 窗口类 ======
           {
@@ -109957,6 +110366,11 @@ summary tabindex target title type usemap value width wmode wrap`;
         };
         let unsubscribe;
         onMounted(async () => {
+          await OS_READY;
+          const osname = getOS();
+          if (osname === "darwin") {
+            ismacos.value = true;
+          }
           settings.loadSettings();
           unsubscribe = On("tipEvent", (event) => {
             handleClipboardChanged();
@@ -109966,9 +110380,11 @@ summary tabindex target title type usemap value width wmode wrap`;
           unsubscribe == null ? void 0 : unsubscribe();
         });
         return (_ctx, _cache) => {
-          return openBlock(), createElementBlock("div", _hoisted_1$2, [
-            createBaseVNode("div", _hoisted_2$2, [
-              createBaseVNode("div", _hoisted_3$2, [
+          return openBlock(), createElementBlock("div", _hoisted_1$3, [
+            createBaseVNode("div", _hoisted_2$3, [
+              createBaseVNode("div", {
+                class: normalizeClass(["w-44 p-3 space-y-2 font-bold text-base dark:bg-gray-800", ismacos.value ? "pt-10 bg-gray-100/20" : "bg-gray-100"])
+              }, [
                 (openBlock(true), createElementBlock(Fragment, null, renderList(requests.value, (item, index2) => {
                   return openBlock(), createElementBlock("div", {
                     key: index2,
@@ -109979,10 +110395,10 @@ summary tabindex target title type usemap value width wmode wrap`;
                       style: normalizeStyle$1(["margin-right: 10px;vertical-align: middle;", item.id === "shortcut" ? "font-size: 19px" : "font-size: 18px"])
                     }, null, 8, ["style"])),
                     createBaseVNode("span", null, toDisplayString$1(item.label), 1)
-                  ], 10, _hoisted_4$2);
+                  ], 10, _hoisted_3$3);
                 }), 128))
-              ]),
-              createBaseVNode("div", _hoisted_5$2, [
+              ], 2),
+              createBaseVNode("div", _hoisted_4$3, [
                 (openBlock(), createBlock(resolveDynamicComponent(getComponent2.value)))
               ])
             ])
@@ -109990,7 +110406,174 @@ summary tabindex target title type usemap value width wmode wrap`;
         };
       }
     });
-    const MainPage = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-22ae6142"]]);
+    const MainPage = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-463a20c0"]]);
+    const _hoisted_1$2 = { class: "top-nav w-[294px] bg-white/90 dark:bg-gray-500/80" };
+    const _hoisted_2$2 = { class: "action-row" };
+    const _hoisted_3$2 = {
+      key: 0,
+      class: "text-xs text-gray-900 dark:text-gray-200"
+    };
+    const _hoisted_4$2 = { class: "actions" };
+    const _hoisted_5$2 = { class: "px-1 py-1" };
+    const _sfc_main$2 = /* @__PURE__ */ defineComponent({
+      __name: "TopNavBar",
+      props: {
+        pendingCount: {},
+        altertitle: {}
+      },
+      emits: ["filter-change"],
+      setup(__props, { emit: __emit }) {
+        const placement = ref("right");
+        const open2 = ref(false);
+        const filterType = ref("all");
+        ref(false);
+        ref(false);
+        const saved = ref(true);
+        ref(0);
+        ref(false);
+        const emit2 = __emit;
+        function onChange() {
+          emit2("filter-change", filterType.value);
+          open2.value = false;
+        }
+        function filterPending() {
+        }
+        const onFilter = () => {
+          open2.value = true;
+        };
+        const onClose = () => {
+          open2.value = false;
+        };
+        const props2 = __props;
+        return (_ctx, _cache) => {
+          const _component_a_radio = resolveComponent("a-radio");
+          const _component_a_radio_group = resolveComponent("a-radio-group");
+          const _component_a_divider = resolveComponent("a-divider");
+          const _component_a_drawer = resolveComponent("a-drawer");
+          return openBlock(), createElementBlock("div", _hoisted_1$2, [
+            createBaseVNode("div", _hoisted_2$2, [
+              createBaseVNode("div", {
+                class: normalizeClass(["pending bg-cyan-300/10 dark:bg-cyan-600/20 text-sky-800 dark:text-neutral-200 [--pulse-color:14,165,233] dark:[--pulse-color:56,189,248]", { active: props2.pendingCount > 0 }]),
+                onClick: filterPending
+              }, [
+                createBaseVNode("span", {
+                  class: normalizeClass(["dot", props2.pendingCount === 0 ? "bg-slate-400  dark:bg-slate-300" : "bg-orange-400  dark:bg-orange-300"])
+                }, null, 2),
+                createTextVNode(" " + toDisplayString$1(props2.pendingCount) + " " + toDisplayString$1(_ctx.$t("pages.home.TopNavBar.pending")), 1)
+              ], 2),
+              saved.value ? (openBlock(), createElementBlock("div", _hoisted_3$2, toDisplayString$1(props2.altertitle), 1)) : createCommentVNode("", true),
+              createBaseVNode("div", _hoisted_4$2, [
+                createBaseVNode("button", { onClick: onFilter }, [
+                  (openBlock(), createElementBlock("svg", {
+                    t: "1772461059462",
+                    class: normalizeClass(["icon", filterType.value === "all" ? "fill-gray-900 dark:fill-gray-200" : "fill-orange-900 dark:fill-orange-200"]),
+                    viewBox: "0 0 1024 1024",
+                    version: "1.1",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    "p-id": "12696",
+                    width: "18",
+                    height: "18"
+                  }, _cache[2] || (_cache[2] = [
+                    createBaseVNode("path", {
+                      d: "M516.973714 950.857143a67.584 67.584 0 0 1-30.427428-7.606857l-111.616-53.248a64.073143 64.073143 0 0 1-38.034286-58.368V499.346286v-2.56L100.937143 179.712a65.609143 65.609143 0 0 1-5.046857-71.021714c10.166857-22.893714 32.914286-35.547429 58.368-35.547429h611.328c25.380571 0 48.274286 12.653714 58.368 35.547429 10.166857 22.820571 10.166857 48.201143-5.12 68.461714L582.948571 494.226286v388.169143c0 22.820571-12.653714 43.154286-30.427428 55.808a55.442286 55.442286 0 0 1-35.547429 12.653714zM154.185143 133.997714c-2.486857 0-5.046857 0-5.046857 2.56v5.12l235.958857 317.074286a70.217143 70.217143 0 0 1 12.653714 40.594286v332.288c0 2.56 0 5.12 2.56 5.12l114.102857 53.248h5.12c2.56 0 2.56-2.56 2.56-5.12V499.346286c0-15.213714 5.046857-27.940571 12.653715-40.594286l235.885714-317.147429c2.56-2.486857 2.56-5.046857 0-5.046857 0-2.56-2.486857-2.56-5.046857-2.56H154.331429z m740.790857 482.011429H717.385143a29.257143 29.257143 0 0 1-30.427429-30.427429 29.257143 29.257143 0 0 1 30.427429-30.427428h177.590857a29.257143 29.257143 0 0 1 30.427429 30.427428 29.257143 29.257143 0 0 1-30.427429 30.427429z m0 126.829714H717.385143a29.257143 29.257143 0 0 1-30.427429-30.427428 29.257143 29.257143 0 0 1 30.427429-30.427429h177.590857a29.257143 29.257143 0 0 1 30.427429 30.427429 29.257143 29.257143 0 0 1-30.427429 30.427428z m0 126.829714H717.385143a29.257143 29.257143 0 0 1-30.427429-30.427428 29.257143 29.257143 0 0 1 30.427429-30.427429h177.590857a29.257143 29.257143 0 0 1 30.427429 30.427429 29.257143 29.257143 0 0 1-30.427429 30.427428z",
+                      "fill-opacity": ".65",
+                      "p-id": "12697"
+                    }, null, -1),
+                    createBaseVNode("path", {
+                      d: "M483.254857 949.76q16.822857 8.411429 33.718857 8.411429 22.162286 0 39.936-14.189715 33.353143-23.917714 33.353143-61.586285V496.64l234.422857-315.099429q24.868571-33.206857 5.924572-75.849142Q812.909714 65.828571 765.586286 65.828571H154.331429q-47.177143 0-64.950858 39.497143-22.528 40.96 5.851429 78.701715l234.422857 315.172571v332.434286q0 46.08 42.276572 64.950857l111.396571 53.174857z m33.718857 1.097143a55.442286 55.442286 0 0 0 35.547429-12.653714 69.705143 69.705143 0 0 0 30.427428-55.808V494.226286l235.885715-317.074286c15.286857-20.260571 15.286857-45.641143 5.12-68.461714-10.166857-22.893714-32.987429-35.547429-58.368-35.547429H154.331429c-25.380571 0-48.274286 12.653714-58.368 35.547429a65.609143 65.609143 0 0 0 5.12 70.948571l235.885714 317.147429v334.848c0 25.380571 15.213714 48.201143 38.034286 58.368l111.616 53.248c10.166857 5.12 20.333714 7.606857 30.427428 7.606857z m248.685715-816.859429c2.486857 0 4.973714 0 4.973714 2.56 2.56 0 2.56 2.56 0 5.12l-1.462857 2.048-0.146286 0.146286L534.674286 458.752a76.653714 76.653714 0 0 0-12.653715 40.594286v385.536c0 2.56 0 5.12-2.56 5.12h-5.12l-114.102857-53.321143c-2.56 0-2.56-2.486857-2.56-5.12V499.419429a70.217143 70.217143 0 0 0-12.653714-40.594286L149.138286 141.604571v-5.046857c0-2.56 2.56-2.56 5.12-2.56h611.328z m-607.597715 7.314286h603.721143L528.676571 454.656l-0.219428 0.292571q-13.677714 22.893714-13.677714 44.397715v382.683428l-109.714286-51.2V499.346286q0-26.112-14.116572-44.982857l-232.886857-313.051429z m559.323429 482.011429h177.590857q16.310857 0 27.062857-10.678858 10.678857-10.752 10.678857-27.062857 0-37.741714-37.741714-37.741714H717.385143q-37.741714 0-37.741714 37.741714t37.741714 37.741715z m0-7.314286h177.590857a29.257143 29.257143 0 0 0 30.427429-30.427429 29.257143 29.257143 0 0 0-30.427429-30.427428H717.385143a29.257143 29.257143 0 0 0-30.427429 30.427428 29.257143 29.257143 0 0 0 30.427429 30.427429z m0 134.144h177.590857q37.741714 0 37.741714-37.741714t-37.741714-37.741715H717.385143q-16.310857 0-27.062857 10.678857-10.678857 10.678857-10.678857 27.062858 0 37.741714 37.741714 37.741714z m0-7.314286h177.590857a29.257143 29.257143 0 0 0 30.427429-30.427428 29.257143 29.257143 0 0 0-30.427429-30.427429H717.385143a29.257143 29.257143 0 0 0-30.427429 30.427429 29.257143 29.257143 0 0 0 30.427429 30.427428z m0 134.144h177.590857q37.741714 0 37.741714-37.741714 0-16.310857-10.678857-27.062857-10.752-10.678857-27.062857-10.678857H717.385143q-16.310857 0-27.062857 10.678857-10.678857 10.752-10.678857 27.062857 0 37.741714 37.741714 37.741714z m0-7.314286h177.590857a29.257143 29.257143 0 0 0 30.427429-30.427428 29.257143 29.257143 0 0 0-30.427429-30.427429H717.385143a29.257143 29.257143 0 0 0-30.427429 30.427429 29.257143 29.257143 0 0 0 30.427429 30.427428z",
+                      "fill-opacity": ".65",
+                      "p-id": "12698"
+                    }, null, -1)
+                  ]), 2))
+                ]),
+                createBaseVNode("button", {
+                  onClick: _cache[0] || (_cache[0] = //@ts-ignore
+                  (...args) => unref(OpenTipsWindow) && unref(OpenTipsWindow)(...args))
+                }, _cache[3] || (_cache[3] = [
+                  createBaseVNode("svg", {
+                    t: "1772461138954",
+                    class: "icon fill-gray-900 dark:fill-gray-200",
+                    viewBox: "0 0 1024 1024",
+                    version: "1.1",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    "p-id": "14007",
+                    width: "24",
+                    height: "24"
+                  }, [
+                    createBaseVNode("path", {
+                      d: "M503 839.1H219.6c-42.3 0-76.6-34.3-76.6-76.6V197.1c0-43.1 34.9-78 78-78h591.7c46.7 0 78.1 32.7 78.1 81.5v30.2c0 17.5-14.2 31.7-31.6 31.7-17.5 0-31.7-14.2-31.7-31.7v-30.3c0-18.1-6.8-18.1-14.7-18.1H221c-7.9 0-14.6 6.7-14.6 14.7v565.3c0 7.3 6 13.3 13.3 13.3h282.7c17.3 0 31.8 13.5 32.3 30.8 0.4 17.9-13.9 32.6-31.7 32.6z",
+                      "p-id": "14008"
+                    }),
+                    createBaseVNode("path", {
+                      d: "M861.3 659.1H507.2c-17.5 0-31.7-14.2-31.7-31.7s14.2-31.7 31.7-31.7h354.1c17.5 0 31.7 14.2 31.7 31.7-0.1 17.5-14.2 31.7-31.7 31.7zM596.1 344.3H320.2c-17.5 0-31.7-14.2-31.7-31.7s14.2-31.7 31.7-31.7h275.9c17.5 0 31.7 14.2 31.7 31.7s-14.2 31.7-31.7 31.7zM440.8 486H320.2c-17.5 0-31.7-14.2-31.7-31.7s14.2-31.7 31.7-31.7h120.6c17.5 0 31.7 14.2 31.7 31.7 0 17.6-14.2 31.7-31.7 31.7z",
+                      "p-id": "14009"
+                    }),
+                    createBaseVNode("path", {
+                      d: "M684.2 836.1c-17.5 0-31.7-14.2-31.7-31.7v-354c0-17.5 14.2-31.7 31.7-31.7s31.7 14.2 31.7 31.7v354c0 17.5-14.2 31.7-31.7 31.7z",
+                      "p-id": "14010"
+                    })
+                  ], -1)
+                ]))
+              ])
+            ]),
+            createVNode(_component_a_drawer, {
+              title: "",
+              placement: placement.value,
+              closable: false,
+              width: "120",
+              height: "80",
+              open: open2.value,
+              onClose,
+              bodyStyle: { padding: "4px" },
+              class: "bg-cyan-100 dark:bg-gray-400"
+            }, {
+              default: withCtx(() => [
+                createBaseVNode("div", _hoisted_5$2, [
+                  _cache[7] || (_cache[7] = createBaseVNode("div", { class: "text-xs font-semibold text-gray-400 mb-4 tracking-wide dark:text-gray-100" }, " 筛选类型 ", -1)),
+                  createVNode(_component_a_radio_group, {
+                    value: filterType.value,
+                    "onUpdate:value": _cache[1] || (_cache[1] = ($event) => filterType.value = $event),
+                    class: "flex flex-col gap-1",
+                    onChange
+                  }, {
+                    default: withCtx(() => [
+                      createVNode(_component_a_radio, { value: "all" }, {
+                        default: withCtx(() => _cache[4] || (_cache[4] = [
+                          createBaseVNode("span", { class: "text-xs text-neutral-900 dark:text-white" }, "默认", -1)
+                        ])),
+                        _: 1,
+                        __: [4]
+                      }),
+                      createVNode(_component_a_radio, { value: "scheduled" }, {
+                        default: withCtx(() => _cache[5] || (_cache[5] = [
+                          createBaseVNode("span", { class: "text-xs text-neutral-900 dark:text-white" }, "定时提示", -1)
+                        ])),
+                        _: 1,
+                        __: [5]
+                      }),
+                      createVNode(_component_a_radio, { value: "immediate" }, {
+                        default: withCtx(() => _cache[6] || (_cache[6] = [
+                          createBaseVNode("span", { class: "text-xs text-neutral-900 dark:text-white" }, "即时提示", -1)
+                        ])),
+                        _: 1,
+                        __: [6]
+                      })
+                    ]),
+                    _: 1
+                  }, 8, ["value"]),
+                  createVNode(_component_a_divider, {
+                    style: { "border-color": "#ccc" },
+                    dashed: ""
+                  })
+                ])
+              ]),
+              _: 1
+            }, 8, ["placement", "open"])
+          ]);
+        };
+      }
+    });
+    const TopNavBar = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-e8138df8"]]);
     function useNowTick(interval = 1e3) {
       const now2 = ref(Date.now());
       let timer = null;
@@ -110007,15 +110590,15 @@ summary tabindex target title type usemap value width wmode wrap`;
       });
       return { now: now2 };
     }
-    const _hoisted_1$1 = { class: "" };
+    const _hoisted_1$1 = { class: "drag-region fixed top-2 right-4 w-[300px] flex flex-col h-screen" };
     const _hoisted_2$1 = {
       key: 0,
-      class: "fixed h-full top-2 right-4 pr-0.5 space-y-1 font-sans select-none h-[86vh] overflow-y-auto overflow-x-hidden scrollbar-thin pb-2"
+      class: "fixed-1 h-full right-4 pr-0.5 space-y-1 font-sans select-none h-[86vh] overflow-y-auto overflow-x-hidden scrollbar-thin pb-4"
     };
     const _hoisted_3$1 = ["onClick", "data-new"];
     const _hoisted_4$1 = { class: "flex gap-1" };
     const _hoisted_5$1 = ["src"];
-    const _hoisted_6$1 = ["title"];
+    const _hoisted_6 = ["title"];
     const _hoisted_7 = { class: "flex flex-col h-10 w-8 gap-1 items-center justify-center mt-1" };
     const _hoisted_8 = ["onClick", "disabled", "title"];
     const _hoisted_9 = ["onClick"];
@@ -110025,10 +110608,18 @@ summary tabindex target title type usemap value width wmode wrap`;
     const _hoisted_13 = ["title"];
     const _hoisted_14 = { class: "flex flex-col h-10 w-8 gap-1 items-center justify-center mt-1" };
     const _hoisted_15 = ["onClick"];
+    const _hoisted_16 = {
+      key: 1,
+      class: "fixed-1 h-full top-2 right-4 pr-0.5 space-y-1 font-sans select-none h-[86vh] overflow-y-auto overflow-x-hidden scrollbar-thin pb-2"
+    };
+    const _hoisted_17 = { class: "w-[294px] rounded-2xl bg-white/90 px-1 py-1 shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition. dark:bg-gray-400/90 dark:text-white" };
+    const _hoisted_18 = { class: "prompt-text" };
     const MAX_SNOOZE = 3;
     const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       __name: "Index",
       setup(__props) {
+        ref("emotion");
+        const pendingCount = ref(0);
         const { now: now2 } = useNowTick(1e3);
         const AUTO_COMPLETE_DURATION = ref(15 * 60);
         function calcProgress(card) {
@@ -110043,10 +110634,10 @@ summary tabindex target title type usemap value width wmode wrap`;
         function getVisual(type) {
           const map = {
             life: { bg: "bg-amber-50", image: "/eat.png" },
-            work: { bg: "bg-blue-50", image: "/image2.png" },
+            work: { bg: "bg-blue-50", image: "/work.png" },
             device: { bg: "bg-teal-50", image: "/image2.png" },
             security: { bg: "bg-emerald-50", image: "/image3.png" },
-            system: { bg: "bg-neutral-100", image: "/image3.png" },
+            system: { bg: "bg-neutral-100", image: "/system.png" },
             rest: { bg: "bg-purple-50", image: "/coffee.png" },
             default: { bg: "bg-neutral-100", image: "/default.png" }
           };
@@ -110079,6 +110670,7 @@ summary tabindex target title type usemap value width wmode wrap`;
           addCard(raw);
         };
         onMounted(async () => {
+          pendingCount.value = await GetFindScheduledCount();
           await fetchTips();
           isReady.value = true;
           const savedCompletion = localStorage.getItem("completion");
@@ -110086,6 +110678,9 @@ summary tabindex target title type usemap value width wmode wrap`;
             AUTO_COMPLETE_DURATION.value = parseInt(savedCompletion, 10) * 60;
           }
           On("tipEvent", onTipEvent);
+          On("tipScheduledCountEvent", (count) => {
+            pendingCount.value = count.data[0];
+          });
         });
         onUnmounted(() => {
           Off("tipEvent");
@@ -110129,22 +110724,40 @@ summary tabindex target title type usemap value width wmode wrap`;
           card.snoozecount = (card.snoozecount ?? 0) + 1;
           UpTipsDelayed(card.id, newExpireAt);
         };
-        const bc = new BroadcastChannel("theme");
-        bc.onmessage = (e2) => {
+        function getPrompt(isFirstTime) {
+          {
+            return `📝 还没有任何提示
+点击下方按钮创建你的第一个提示`;
+          }
+        }
+        themeChannel.onmessage = (e2) => {
           applyTheme(e2.data);
         };
-        const setting = new BroadcastChannel("settings");
-        setting.onmessage = (e2) => {
+        langChannel.onmessage = async (e2) => {
+          await setupI18n(e2.data);
+        };
+        settingChannel.onmessage = (e2) => {
           if (e2.data.type === "duration") {
             AUTO_COMPLETE_DURATION.value = e2.data.value * 60;
           }
         };
+        const viewfilter = ref("all");
         return (_ctx, _cache) => {
+          const _component_a_button = resolveComponent("a-button");
+          const _component_a_empty = resolveComponent("a-empty");
           return openBlock(), createElementBlock("div", _hoisted_1$1, [
-            isReady.value && cards.value.length > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$1, [
-              createVNode(TransitionGroup, { name: "card" }, {
+            createVNode(TopNavBar, {
+              class: "z-50 mb-1",
+              pendingCount: pendingCount.value,
+              altertitle: "提示面板"
+            }, null, 8, ["pendingCount"]),
+            isReady.value && (cards.value.length > 0 || cardscheduleds.value.length > 0) ? (openBlock(), createElementBlock("div", _hoisted_2$1, [
+              createVNode(TransitionGroup, {
+                name: "card",
+                class: ""
+              }, {
                 default: withCtx(() => [
-                  (openBlock(true), createElementBlock(Fragment, null, renderList(cardscheduleds.value, (card) => {
+                  viewfilter.value === "all" || viewfilter.value === "scheduled" ? (openBlock(true), createElementBlock(Fragment, { key: 0 }, renderList(cardscheduleds.value, (card) => {
                     return openBlock(), createElementBlock("div", {
                       key: card.id,
                       onClick: ($event) => onCardClick(card),
@@ -110164,7 +110777,7 @@ summary tabindex target title type usemap value width wmode wrap`;
                         createBaseVNode("div", {
                           class: "flex-1 text-sm py-1 text-neutral-900 line-clamp-2 break-words dark:text-white",
                           title: card.title
-                        }, toDisplayString$1(card.title), 9, _hoisted_6$1),
+                        }, toDisplayString$1(card.title), 9, _hoisted_6),
                         createBaseVNode("div", _hoisted_7, [
                           createBaseVNode("button", {
                             onClick: withModifiers(($event) => onCardDelayed(card), ["stop"]),
@@ -110211,8 +110824,8 @@ summary tabindex target title type usemap value width wmode wrap`;
                         }, null, 4)
                       ], 8, _hoisted_10)
                     ], 8, _hoisted_3$1);
-                  }), 128)),
-                  (openBlock(true), createElementBlock(Fragment, null, renderList(cards.value, (card) => {
+                  }), 128)) : createCommentVNode("", true),
+                  viewfilter.value === "all" || viewfilter.value === "immediate" ? (openBlock(true), createElementBlock(Fragment, { key: 1 }, renderList(cards.value, (card) => {
                     return openBlock(), createElementBlock("div", {
                       key: card.id,
                       "data-new": card._isNew,
@@ -110241,16 +110854,45 @@ summary tabindex target title type usemap value width wmode wrap`;
                         ], 8, _hoisted_15)
                       ])
                     ], 8, _hoisted_11);
-                  }), 128))
+                  }), 128)) : createCommentVNode("", true)
                 ]),
                 _: 1
               })
-            ])) : createCommentVNode("", true)
+            ])) : (openBlock(), createElementBlock("div", _hoisted_16, [
+              createBaseVNode("div", _hoisted_17, [
+                createVNode(_component_a_empty, {
+                  class: "flex flex-col items-center justify-center",
+                  image: "https://gw.alipayobjects.com/mdn/miniapp_social/afts/img/A*pevERLJC9v0AAAAAAAAAAABjAQAAAQ/original",
+                  "image-style": {
+                    height: "60px"
+                  }
+                }, {
+                  description: withCtx(() => [
+                    createBaseVNode("span", _hoisted_18, toDisplayString$1(getPrompt(true)), 1),
+                    _cache[2] || (_cache[2] = createBaseVNode("br", null, null, -1)),
+                    createVNode(_component_a_button, {
+                      type: "dashed",
+                      class: "text-orange-400 dark:text-orange-300 mt-2",
+                      size: "small",
+                      style: { "width": "80px" },
+                      onClick: unref(OpenTipsWindow)
+                    }, {
+                      default: withCtx(() => _cache[1] || (_cache[1] = [
+                        createTextVNode("创建提示")
+                      ])),
+                      _: 1,
+                      __: [1]
+                    }, 8, ["onClick"])
+                  ]),
+                  _: 1
+                })
+              ])
+            ]))
           ]);
         };
       }
     });
-    const SecondPage = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-192adaf6"]]);
+    const SecondPage = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-785af4a4"]]);
     const MINUTE$1 = 60;
     const HOUR$1 = 60 * MINUTE$1;
     const DAY$1 = 24 * HOUR$1;
@@ -110481,15 +111123,16 @@ summary tabindex target title type usemap value width wmode wrap`;
         text: `识别为 ${formatTime(at)}`
       };
     }
-    const _hoisted_1 = { class: "fixed inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm dark:bg-gray-400/20" };
-    const _hoisted_2 = { class: "w-[420px] rounded-1xl bg-white/90 dark:bg-gray-500/90 dark:text-white backdrop-blur-md shadow-[0_16px_40px_rgba(0,0,0,0.18)] px-5 py-4" };
-    const _hoisted_3 = ["onKeydown"];
-    const _hoisted_4 = { class: "mt-3 flex items-center justify-between text-neutral-400 dark:text-white" };
-    const _hoisted_5 = { class: "text-xs" };
-    const _hoisted_6 = { class: "flex gap-3" };
+    const _hoisted_1 = ["onKeydown"];
+    const _hoisted_2 = { class: "drag-region py-3 flex items-center justify-between text-neutral-400 dark:text-white" };
+    const _hoisted_3 = { class: "flex gap-3" };
+    const _hoisted_4 = { class: "text-xs border-dotted border-1 border-gray-400 dark:border-white rounded" };
+    const _hoisted_5 = { class: "flex gap-3" };
     const _sfc_main = /* @__PURE__ */ defineComponent({
       __name: "Index",
       setup(__props) {
+        const ismacos = ref(false);
+        const inputRef = ref(null);
         const input = ref("");
         const tipType = ref("scheduled");
         const parseResult = ref({ status: "empty" });
@@ -110512,8 +111155,6 @@ summary tabindex target title type usemap value width wmode wrap`;
         };
         const onKeydown = (e2) => {
           if (e2.key === "Escape") {
-            input.value = "";
-            tipType.value = "scheduled";
             HideTipsWindow();
           }
         };
@@ -110523,8 +111164,17 @@ summary tabindex target title type usemap value width wmode wrap`;
         const runParse = debounce((text) => {
           parseResult.value = parseTimePreview(text, tipType.value);
         }, 400);
-        onMounted(() => {
+        let readyToAutoHide = false;
+        onMounted(async () => {
+          var _a2;
           window.addEventListener("keydown", onKeydown);
+          (_a2 = inputRef.value) == null ? void 0 : _a2.focus();
+          document.addEventListener("mouseup", () => {
+            var _a3;
+            (_a3 = inputRef.value) == null ? void 0 : _a3.focus();
+          });
+          await OS_READY;
+          ismacos.value = IsmacOS();
           const savedCompletion = localStorage.getItem("completion");
           if (savedCompletion) {
             completion.value = parseInt(savedCompletion, 10);
@@ -110533,10 +111183,28 @@ summary tabindex target title type usemap value width wmode wrap`;
           if (savedDuration) {
             duration.value = parseInt(savedDuration, 10);
           }
+          setTimeout(() => {
+            readyToAutoHide = true;
+          }, 1e3);
+          window.addEventListener("blur", onBlur);
         });
+        let blurTimeout;
         onUnmounted(() => {
+          clearTimeout(blurTimeout);
+          window.removeEventListener("blur", onBlur);
           window.removeEventListener("keydown", onKeydown);
         });
+        function onBlur() {
+          if (readyToAutoHide) {
+            blurTimeout = setTimeout(() => {
+              if (document.hasFocus()) return;
+              if (input.value.trim()) {
+                return;
+              }
+              HideTipsWindow();
+            }, 100);
+          }
+        }
         function detectType(text) {
           if (/密码|安全|验证/.test(text)) return "security";
           if (/备份|存储|照片|电脑/.test(text)) return "device";
@@ -110545,12 +111213,10 @@ summary tabindex target title type usemap value width wmode wrap`;
           if (/会议|任务|工作|开会/.test(text)) return "work";
           return "default";
         }
-        const bc = new BroadcastChannel("theme");
-        bc.onmessage = (e2) => {
+        themeChannel.onmessage = (e2) => {
           applyTheme(e2.data);
         };
-        const setting = new BroadcastChannel("settings");
-        setting.onmessage = (e2) => {
+        settingChannel.onmessage = (e2) => {
           if (e2.data.type === "duration") {
             duration.value = e2.data.value;
           } else if (e2.data.type === "completion") {
@@ -110569,49 +111235,58 @@ summary tabindex target title type usemap value width wmode wrap`;
         }
         return (_ctx, _cache) => {
           const _component_a_tooltip = resolveComponent("a-tooltip");
-          return openBlock(), createElementBlock("div", _hoisted_1, [
+          return openBlock(), createElementBlock("div", {
+            class: normalizeClass([ismacos.value ? "" : "border border-gray-500 dark:border-gray-500", "w-[360px] inset-0 drag-region rounded-3xl flex flex-col bg-neutral-50 dark:bg-gray-500 dark:text-white px-4 pt-4"])
+          }, [
+            withDirectives(createBaseVNode("textarea", {
+              "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => input.value = $event),
+              onKeydown: withKeys(withModifiers(sendMessage, ["prevent"]), ["enter"]),
+              ref_key: "inputRef",
+              ref: inputRef,
+              rows: "2",
+              placeholder: "有思路，就写下来",
+              class: "w-full no-drag indent-1 resize-none font-medium bg-neutral-50 dark:bg-gray-500 py-1 text-sm text-neutral-900 dark:text-gray-100 placeholder:text-neutral-400 dark:placeholder:text-gray-100 focus:outline-none caret-blue-600 dark:caret-blue-200"
+            }, null, 40, _hoisted_1), [
+              [vModelText, input.value]
+            ]),
             createBaseVNode("div", _hoisted_2, [
-              _cache[5] || (_cache[5] = createBaseVNode("div", { class: "mb-3 text-sm text-neutral-500 dark:text-white" }, " 轻提示 · 输入一句你不想忘的事 ", -1)),
-              withDirectives(createBaseVNode("textarea", {
-                "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => input.value = $event),
-                onKeydown: withKeys(withModifiers(sendMessage, ["prevent"]), ["enter"]),
-                rows: "2",
-                placeholder: "例如：30 分钟后提醒我备份照片",
-                class: "w-full resize-none rounded-xl border border-neutral-200 bg-neutral-50 dark:bg-gray-100 px-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-300 focus:outline-none"
-              }, null, 40, _hoisted_3), [
-                [vModelText, input.value]
+              createBaseVNode("div", _hoisted_3, [
+                createVNode(_component_a_tooltip, { placement: "topRight" }, {
+                  title: withCtx(() => _cache[3] || (_cache[3] = [
+                    createTextVNode("即时提示")
+                  ])),
+                  default: withCtx(() => [
+                    createVNode(unref(ThunderboltOutlined), {
+                      onClick: _cache[1] || (_cache[1] = ($event) => sendtipType("immediate")),
+                      class: normalizeClass(tipType.value === "immediate" ? "text-orange-300 dark:text-orange-400" : "text-gray-500 dark:text-white")
+                    }, null, 8, ["class"])
+                  ]),
+                  _: 1
+                }),
+                createVNode(_component_a_tooltip, { placement: "topRight" }, {
+                  title: withCtx(() => _cache[4] || (_cache[4] = [
+                    createTextVNode("定时提示")
+                  ])),
+                  default: withCtx(() => [
+                    createVNode(unref(FieldTimeOutlined), {
+                      onClick: _cache[2] || (_cache[2] = ($event) => sendtipType("scheduled")),
+                      class: normalizeClass(tipType.value === "scheduled" ? "text-orange-300 dark:text-orange-400" : "text-gray-500 dark:text-white")
+                    }, null, 8, ["class"])
+                  ]),
+                  _: 1
+                })
               ]),
-              createBaseVNode("div", _hoisted_4, [
-                createBaseVNode("div", _hoisted_5, " Enter 确认 · Esc 取消 · " + toDisplayString$1(parseResult.value.status === "empty" ? "将默认提醒" : parseResult.value.status === "invalid" ? "将默认提醒" : `${parseResult.value.text}`), 1),
-                createBaseVNode("div", _hoisted_6, [
-                  createVNode(_component_a_tooltip, null, {
-                    title: withCtx(() => _cache[3] || (_cache[3] = [
-                      createTextVNode("即时提示")
-                    ])),
-                    default: withCtx(() => [
-                      createVNode(unref(ThunderboltOutlined), {
-                        onClick: _cache[1] || (_cache[1] = ($event) => sendtipType("immediate")),
-                        class: normalizeClass(tipType.value === "immediate" ? "text-orange-300 dark:text-orange-400" : "text-gray-400 dark:text-white")
-                      }, null, 8, ["class"])
-                    ]),
-                    _: 1
-                  }),
-                  createVNode(_component_a_tooltip, { placement: "topRight" }, {
-                    title: withCtx(() => _cache[4] || (_cache[4] = [
-                      createTextVNode("定时提示")
-                    ])),
-                    default: withCtx(() => [
-                      createVNode(unref(FieldTimeOutlined), {
-                        onClick: _cache[2] || (_cache[2] = ($event) => sendtipType("scheduled")),
-                        class: normalizeClass(tipType.value === "scheduled" ? "text-orange-300 dark:text-orange-400" : "text-gray-400 dark:text-white")
-                      }, null, 8, ["class"])
-                    ]),
-                    _: 1
-                  })
-                ])
+              createBaseVNode("div", _hoisted_4, toDisplayString$1(parseResult.value.status === "empty" ? "将默认提醒" : parseResult.value.status === "invalid" ? "将默认提醒" : `${parseResult.value.text}`), 1),
+              createBaseVNode("div", _hoisted_5, [
+                createBaseVNode("div", {
+                  onClick: sendMessage,
+                  class: normalizeClass(["w-[30px] h-[30px] text-neutral-50 rounded-full items-center justify-center flex pl-1", input.value.trim().length > 0 ? "bg-neutral-800" : "bg-neutral-300 dark:bg-neutral-400"])
+                }, [
+                  createVNode(unref(SendOutlined))
+                ], 2)
               ])
             ])
-          ]);
+          ], 2);
         };
       }
     });
@@ -110632,6 +111307,11 @@ summary tabindex target title type usemap value width wmode wrap`;
     async function bootstrap() {
       await setupI18n("zh");
       createApp(App).use(Antd).use(router).use(i18n).use(createPinia()).mount("#app");
+      router.isReady().then(async () => {
+        const lang = await GetLanguage();
+        console.log("当前语言:", lang);
+        await setupI18n(lang || "zh");
+      });
     }
     bootstrap();
   }

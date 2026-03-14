@@ -93,7 +93,7 @@
           style="transition-delay: 300ms"
         >
           <p>Designed & Built by Jin Gong</p>
-          <p>© 2026 Light Prompt</p>
+          <p>© 2026 Small Prompt</p>
         </div>
       </transition>
     </div>
